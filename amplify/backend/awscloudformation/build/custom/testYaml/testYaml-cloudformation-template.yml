@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  env:
+    Type: String
+Description: >-
+  {"createdOn":"Mac","createdBy":"Amplify","createdWith":"9.1.0","stackType":"custom-customCloudformation","metadata":{}}
+Resources:
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Code:
+        ZipFile: |
+          exports.handler = (event, context, callback) => {
+              callback(null, "Hello World!");
+          };
+      Runtime: nodejs12.x
+      Timeout: '25'
+  StatesExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - Fn::Sub: states.${AWS::Region}.amazonaws.com
+            Action: sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: StatesExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource: '*'
+  MyStateMachine:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      DefinitionString:
+        Fn::Sub:
+          - |-
+            {
+              "Comment": "A Hello World example using an Amazon Lambda function",
+              "StartAt": "HelloWorld",
+              "States": {
+                "HelloWorld": {
+                  "Type": "Task",
+                  "Resource": "${lambdaArn}",
+                  "End": true
+                }
+              }
+            }
+          - lambdaArn:
+              Fn::GetAtt:
+                - MyLambdaFunction
+                - Arn
+      RoleArn:
+        Fn::GetAtt:
+          - StatesExecutionRole
+          - Arn

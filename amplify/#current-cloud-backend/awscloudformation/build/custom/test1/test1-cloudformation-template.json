@@ -1,0 +1,106 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"9.1.0\",\"stackType\":\"custom-customCloudformation\",\"metadata\":{}}",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "IAMROLE": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "cloudformation.amazonaws.com",
+                  "s3.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "RoleName": "PPERole",
+        "Description": "The role for EC2, OpenSearch, CloudFormation",
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonEC2FullAccess",
+          "arn:aws:iam::aws:policy/AmazonOpenSearchServiceFullAccess",
+          "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+          "arn:aws:iam::aws:policy/AWSPanoramaFullAccess"
+        ]
+      }
+    },
+    "S3BucketCreation": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "ppebuckettest1234",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      },
+      "DependsOn": "IAMROLE"
+    },
+    "PpeCameraTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "camera_id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "camera_id",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": "1",
+          "WriteCapacityUnits": "1"
+        },
+        "TableName": "PPE_Camera_table",
+        "StreamSpecification": {
+          "StreamViewType": "NEW_AND_OLD_IMAGES"
+        }
+      }
+    },
+    "PpeDeviceTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "device_id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "device_id",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": "1",
+          "WriteCapacityUnits": "1"
+        },
+        "TableName": "PPE_Device_table"
+      }
+    }
+  }
+}

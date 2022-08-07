@@ -1,0 +1,5 @@
+{
+  "tableName": "Camera",
+  "partitionKeyName": "camera_id",
+  "partitionKeyType": "S"
+}

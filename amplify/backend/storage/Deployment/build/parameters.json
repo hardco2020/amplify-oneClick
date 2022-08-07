@@ -1,0 +1,5 @@
+{
+  "tableName": "Deployment",
+  "partitionKeyName": "DeploymentID",
+  "partitionKeyType": "S"
+}

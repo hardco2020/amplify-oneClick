@@ -1,0 +1,7 @@
+{
+  "tableName": "Event",
+  "partitionKeyName": "CameraID",
+  "partitionKeyType": "S",
+  "sortKeyName": "TimeStamp",
+  "sortKeyType": "N"
+}

@@ -1,0 +1,5 @@
+{
+  "tableName": "ppaModel",
+  "partitionKeyName": "model_name",
+  "partitionKeyType": "S"
+}

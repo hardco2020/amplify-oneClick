@@ -1,0 +1,5 @@
+{
+  "tableName": "Device",
+  "partitionKeyName": "device_id",
+  "partitionKeyType": "S"
+}
