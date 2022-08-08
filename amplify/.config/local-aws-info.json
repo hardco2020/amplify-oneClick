@@ -1,5 +1,10 @@
 {
   "test": {
     "configLevel": "amplifyAdmin"
+  },
+  "dev": {
+    "configLevel": "project",
+    "useProfile": true,
+    "profileName": "test"
   }
 }

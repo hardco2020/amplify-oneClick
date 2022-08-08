@@ -11,12 +11,12 @@ import boto3
 
 # Sagemaker 
 sm = boto3.client('sagemaker', region_name = 'ap-southeast-1')
-
+env_p = boto3.client('ssm').get_parameter(Name='/ppe/env')['Parameter']['Value']
 # SSM 
 random_p = boto3.client('ssm').get_parameter(Name='/ppe/random')
 
 PRE_S3_NAME = 'pretraininput-' + random_p['Parameter']['Value']
-TABLE_NAME = 'ppaModel-test'
+TABLE_NAME = 'ppaModel-' + env_p
 
 print(random_p)
 print(random_p['Parameter']['Value'])

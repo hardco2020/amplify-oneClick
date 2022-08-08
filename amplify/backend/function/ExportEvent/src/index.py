@@ -3,7 +3,11 @@ import boto3
 import os
 from botocore.exceptions import ClientError
 
-TABLE_NAME = "Event-test"
+
+env_p = boto3.client('ssm').get_parameter(Name='/ppe/env')['Parameter']['Value']
+
+
+TABLE_NAME = "Event-" + env_p
 db = boto3.resource('dynamodb')
 table = db.Table(TABLE_NAME)
 

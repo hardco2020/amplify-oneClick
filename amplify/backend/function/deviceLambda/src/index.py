@@ -3,6 +3,9 @@ import boto3
 
 import sys
 
+env_p = boto3.client('ssm').get_parameter(Name='/ppe/env')['Parameter']['Value']
+
+TABLE_NAME = "Device-" + env_p
 # Hack to print to stderr so it appears in CloudWatch.
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, ** kwargs)
@@ -10,7 +13,6 @@ def eprint(*args, **kwargs):
 
 def post(event):
     print(event)
-    TABLE_NAME = "Device-test"
     db = boto3.resource('dynamodb')
     table = db.Table(TABLE_NAME)
     body = json.loads(event['body'])
@@ -60,7 +62,6 @@ def get(event):
     print(event)
     eprint(">>> Start query config.")
 
-    TABLE_NAME = "Device-test"
     db = boto3.resource('dynamodb')
     table = db.Table(TABLE_NAME)
 

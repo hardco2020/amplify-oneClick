@@ -166,7 +166,8 @@
               "Action": [
                 "s3:*",
                 "dynamodb:*",
-                "panorama:*"
+                "panorama:*",
+                "ssm:*"
               ],
               "Resource": "*"
             }

@@ -1,7 +1,8 @@
 import json
 import boto3 
 
-TABLE_NAME = 'ppaModel-test'
+env_p = boto3.client('ssm').get_parameter(Name='/ppe/env')['Parameter']['Value']
+TABLE_NAME = 'ppaModel-' + env_p
 db = boto3.resource('dynamodb')
 table = db.Table(TABLE_NAME)
 

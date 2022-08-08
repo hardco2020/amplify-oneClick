@@ -6,7 +6,13 @@
       "type": "manual"
     }
   },
-  "custom": {},
+  "custom": {
+    "customResource291b215b": {
+      "service": "customCloudformation",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  },
   "function": {
     "cameraLambda": {
       "build": true,

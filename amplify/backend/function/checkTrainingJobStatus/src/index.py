@@ -3,12 +3,12 @@ import boto3
 
 # Get SSM 
 ssm = boto3.client('ssm')
-
+env_p = boto3.client('ssm').get_parameter(Name='/ppe/env')['Parameter']['Value']
 # Get SM 
 sm = boto3.client('sagemaker', region_name = 'ap-southeast-1')
 
 # Get DB
-TABLE_NAME = 'ppaModel-test'
+TABLE_NAME = 'ppaModel-' + env_p
 db = boto3.resource('dynamodb')
 table = db.Table(TABLE_NAME)
 

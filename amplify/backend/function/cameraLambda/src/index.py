@@ -3,13 +3,16 @@ import boto3
 import sys
 
 
+# SSM 
+env_p = boto3.client('ssm').get_parameter(Name='/ppe/env')['Parameter']['Value']
+
 # Hack to print to stderr so it appears in CloudWatch.
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, ** kwargs)
 
 
 def post(event):
-    TABLE_NAME = 'Camera-test'
+    TABLE_NAME = 'Camera-' + env_p
     db = boto3.resource('dynamodb')
     pano_client = boto3.client('panorama')
     table = db.Table(TABLE_NAME)
@@ -87,7 +90,7 @@ def post(event):
 
 def get(event):
     print(event)
-    TABLE_NAME = 'Camera-test'
+    TABLE_NAME = 'Camera-' + env_p
     eprint(">>> Start query config.")
     # return {
     #   'statusCode': 200,
