@@ -277,7 +277,7 @@
         "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ppaDeployment-cloudformation-template.json",
         "Parameters": {
           "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
-          "s3Key": "amplify-builds/ppaDeployment-6b48317379325276774b-build.zip",
+          "s3Key": "amplify-builds/ppaDeployment-44436273564a76616153-build.zip",
           "env": "dev"
         }
       }

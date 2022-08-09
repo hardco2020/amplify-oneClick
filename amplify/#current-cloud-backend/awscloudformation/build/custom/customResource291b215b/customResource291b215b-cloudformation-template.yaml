@@ -178,6 +178,9 @@ Resources:
               - Effect: Allow
                 Action: panorama:*
                 Resource: '*'
+              - Effect: Allow
+                Action: ssm:*
+                Resource: '*'
   WebAppSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -430,12 +433,6 @@ Resources:
                   - dynamodb:*
                   - states:*
                 Resource: '*'
-  CodeBuildSourceCredential:
-    Type: AWS::CodeBuild::SourceCredential
-    Properties:
-      AuthType: PERSONAL_ACCESS_TOKEN
-      ServerType: GITHUB
-      Token: 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
   BuildPanoramaApp:
     Type: AWS::CodeBuild::Project
     Properties:
@@ -454,13 +451,8 @@ Resources:
         PrivilegedMode: 'true'
       Source:
         BuildSpec: deployment/buildspec.yaml
-        Auth:
-          Resource:
-            Ref: CodeBuildSourceCredential
-          Type: OAUTH
-        Location: https://github.com/hardco2020/aws-ppe.git
+        Location: https://github.com/hardco2020/aws-ppe-test1.git
         Type: GITHUB
-      SourceVersion: dev/auto-deploy
   ModelStateMachine:
     Type: AWS::StepFunctions::StateMachine
     Properties:
@@ -612,7 +604,7 @@ Resources:
             }
           - AccountId:
               Ref: AWS::AccountId
-          - Env:
+            Env:
               Ref: env
             Resource: arn:aws-cn:states:::lambda:invoke
       RoleArn:

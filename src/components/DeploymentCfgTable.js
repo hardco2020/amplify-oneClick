@@ -163,7 +163,6 @@ const DeploymentCfgTable = ({t, changeLang}) =>{
             );
     return(
         <>
-        <Button onClick={()=>changeLang('en')}>test</Button>
         <Table
         id = "DepCfgTable"
         actionGroup={tableActions}

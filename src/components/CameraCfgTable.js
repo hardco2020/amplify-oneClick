@@ -1,11 +1,11 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/no-multi-comp */
-import { Table, Header, SpaceBetween, Button, TextFilter, Pagination } from '@amzn/awsui-components-react/polaris';
+// import { Table, Header, SpaceBetween, Button, TextFilter, Pagination } from '@amzn/awsui-components-react/polaris';
 import { useCollection } from '@amzn/awsui-collection-hooks';
 import PropertyFilter from '@amzn/awsui-components-react/polaris/property-filter';
-// import Table from 'aws-northstar/components/Table';
-// import StatusIndicator from 'aws-northstar/components/StatusIndicator';
-// import Button from 'aws-northstar/components/Button';
+import Table from 'aws-northstar/components/Table';
+import StatusIndicator from 'aws-northstar/components/StatusIndicator';
+import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
 
 import React  from 'react';
@@ -30,22 +30,20 @@ const columnDefinitions = [
     {
         'id': 'camera_id',
         width: 300,
-        header: 'ID',
-        cell: e => e.camera_id
+        Header: 'ID',
+        accessor: 'camera_id'
     },
     {
         'id': 'address',
         width: 600,
-        header: 'Address',
-        // accessor: 'address'
-        cell: e => e.address
+        Header: 'Address',
+        accessor: 'address'
     },
     {
         'id': 'description',
         width: 300,
-        header: 'Description',
-        cell: e => e.description
-        //accessor: 'description'
+        Header: 'Description',
+        accessor: 'description'
     },
     // {
     //     'id': 'location',
@@ -56,9 +54,8 @@ const columnDefinitions = [
     {
         'id': 'brand',
         width: 200,
-        header: 'Name',
-        //accessor: 'brand'
-        cell: e => e.brand
+        Header: 'Name',
+        accessor: 'brand'
     },
     // {
     //     'id': 'network',
@@ -73,7 +70,6 @@ const columnDefinitions = [
     //     accessor: 'image_size'
     // }
 ]
-
 
 class  CameraCfgTable extends React.Component {
   constructor(props) {
@@ -131,52 +127,29 @@ class  CameraCfgTable extends React.Component {
     } = this;
 
 
+    const tableActions = (
+        <Inline>
+            <Button variant="primary" onClick={() => this.jump_to_newCfg()}>
+                {t('New Camera Config')}
+            </Button>
+        </Inline>
+    );
+
     return(
-        <>
+
         <Table
             id = "CameraCfgTable"
-            header={
-                <Header 
-                    actions={
-                        <Button variant="primary" onClick={()=>this.jump_to_newCfg()}>
-                            {t('New Camera Config')}
-                        </Button>
-                    }
-                >
-                   {t('Camera Config')}
-                   
-                </Header>
-            }
-            // pagination={
-            //     <Pagination
-            //       currentPageIndex={1}
-            //       pagesCount={Math.floor(this.state.job_list.length/2)}
-            //       ariaLabels={{
-            //         nextPageLabel: "Next page",
-            //         previousPageLabel: "Previous page",
-            //         pageLabel: pageNumber =>
-            //           `Page ${pageNumber} of all pages`
-            //       }}
-            //     />
-            // }
-            // filter={
-            //     <PropertyFilter
-            //       i18nStrings={PROPERTY_FILTERING_I18N_CONSTANTS}
-            //       {...propertyFilterProps}
-            //       countText={getFilterCounterText(filteredItemsCount)}
-            //       expandToViewport={true}
-            //     />
-            // }
-
-            loadingText="Loading resources"
+            actionGroup={tableActions}
+            tableTitle={t('Camera Config')}
+            multiSelect={false}
             columnDefinitions={columnDefinitions}
             items={this.state.job_list}
+            onSelectionChange={(item)=>{this.setState({curent:item})}}
             // getRowId={this.getRowId}
             loading={this.state.loading}
+            disableSettings={false}
             // onFetchData={this.handleFetchData}
         />
-
-        </>
     )
   }
 }

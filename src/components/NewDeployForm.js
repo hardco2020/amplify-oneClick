@@ -142,7 +142,7 @@ class  NewDeployForm extends React.Component {
     // console.log(e)
     const payload = {
       "Deployment_ID":this.state.Deployment_ID,
-      "Device_ID": this.state.Device_ID,
+      "Device_ID": this.state.Chose_Device_UUID,
       "Camera_ID": this.state.Chose_Camera.value,
       "Component_Version_ID": this.state.Chose_Device_UUID,
       "Model_Version_ID": this.state.Chose_Camera_Name,
@@ -156,9 +156,21 @@ class  NewDeployForm extends React.Component {
     // const HEADERS = {'Content-Type': 'application/json'};
     // const apiUrl = '/deployment';
     // // var result = "=> call"  + apiUrl + "\n";
-    // var result = "";
+    let result = "";
 
     console.log(payload);
+    API.post('backend','/deployment',{body : payload}).then(response => {
+        console.log(response);
+        if (response.status === 200) {
+            result = "Post Deployment request successfully !"
+        } else {
+            result = "Post Deployment request  error !"
+        }
+        this.setState({post_result:result},()=>{
+          this.setState({visible:true})
+        })
+        // console.log(result)
+    })
     // axios({ method: 'POST', url: `${apiUrl}`, data: payload ,headers: HEADERS}).then(response => {
     //     console.log(response);
     //     if (response.status === 200) {
@@ -222,7 +234,7 @@ class  NewDeployForm extends React.Component {
                     <Button variant="primary" onClick={() => this.submit()}  >Submit</Button>
                 </div>
             }
-            onSubmit={console.log}
+            onSubmit={(e)=>this.handleDeploy(e)}
         >
             <FormSection header={t("New Deployment")}>
                  <FormField label="Deployment ID" controlId="formFieldId0">

@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: >-
   {"createdOn":"Mac","createdBy":"Amplify","createdWith":"9.1.0","stackType":"custom-customCloudformation","metadata":{}}
 Parameters:
@@ -48,7 +48,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - ppebucket
             - Fn::GetAtt:
                 - RandomParameter
@@ -62,7 +62,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - panorama-app
             - Fn::GetAtt:
                 - RandomParameter
@@ -76,7 +76,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - event
             - Fn::GetAtt:
                 - RandomParameter
@@ -90,7 +90,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - export-event
             - Fn::GetAtt:
                 - RandomParameter
@@ -104,7 +104,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - app-graph
             - Fn::GetAtt:
                 - RandomParameter
@@ -118,7 +118,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - pretraininput
             - Fn::GetAtt:
                 - RandomParameter
@@ -128,7 +128,7 @@ Resources:
     Properties:
       BucketName:
         Fn::Join:
-          - '-'
+          - "-"
           - - retrainoutput
             - Fn::GetAtt:
                 - RandomParameter
@@ -137,7 +137,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -150,32 +150,35 @@ Resources:
       Policies:
         - PolicyName: root
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action: sagemaker:*
-                Resource: '*'
+                Resource: "*"
               - Effect: Allow
                 Action: iam:*
-                Resource: '*'
+                Resource: "*"
               - Effect: Allow
                 Action: s3:*
-                Resource: '*'
+                Resource: "*"
               - Effect: Allow
                 Action: ecr:*
-                Resource: '*'
+                Resource: "*"
               - Effect: Allow
                 Action: lambda:*
-                Resource: '*'
+                Resource: "*"
               - Effect: Allow
                 Action: panorama:*
-                Resource: '*'
+                Resource: "*"
+              - Effect: Allow
+                Action: ssm:*
+                Resource: "*"
   WebAppSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupName:
         Fn::Join:
-          - '-'
+          - "-"
           - - webapp-security-group
             - dev
       GroupDescription: Allow HTTP/HTTPS and SSH inbound and outbound traffic
@@ -202,7 +205,7 @@ Resources:
         - Key: Name
           Value:
             Fn::Join:
-              - '-'
+              - "-"
               - - webapp-eip
                 - dev
   BashInstance:
@@ -213,7 +216,7 @@ Resources:
     Properties:
       AvailabilityZone:
         Fn::Select:
-          - '0'
+          - "0"
           - Fn::GetAZs:
               Ref: AWS::Region
       SecurityGroupIds:
@@ -226,15 +229,15 @@ Resources:
         - DeviceName: /dev/xvda
           Ebs:
             VolumeType: io1
-            Iops: '200'
-            VolumeSize: '30'
-            Encrypted: 'true'
+            Iops: "200"
+            VolumeSize: "30"
+            Encrypted: "true"
       IamInstanceProfile:
         Ref: BashInstanceProfile
       UserData:
         Fn::Base64:
           Fn::Join:
-            - ''
+            - ""
             - - |
                 #!/bin/bash
               - |
@@ -267,10 +270,10 @@ Resources:
               - Ref: S3BucketPanoramaAppCreation
               - |
                 / --recursive
-              - '/opt/aws/bin/cfn-signal -e 0 --stack '
+              - "/opt/aws/bin/cfn-signal -e 0 --stack "
               - Ref: AWS::StackName
-              - ' --resource BashInstance '
-              - ' --region '
+              - " --resource BashInstance "
+              - " --region "
               - Ref: AWS::Region
               - |+
 
@@ -283,7 +286,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -297,7 +300,7 @@ Resources:
       Policies:
         - PolicyName: root
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -308,7 +311,7 @@ Resources:
                   - lambda:*
                   - dynamodb:*
                   - ssm:*
-                Resource: '*'
+                Resource: "*"
   BashKey:
     Type: AWS::EC2::KeyPair
     Properties:
@@ -317,7 +320,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -329,7 +332,7 @@ Resources:
       Policies:
         - PolicyName: root
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -340,12 +343,12 @@ Resources:
                   - lambda:*
                   - dynamodb:*
                   - ssm:*
-                Resource: '*'
+                Resource: "*"
   LambdaRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -359,7 +362,7 @@ Resources:
       Policies:
         - PolicyName: root
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -370,14 +373,14 @@ Resources:
                   - lambda:*
                   - dynamodb:*
                   - ssm:*
-                Resource: '*'
+                Resource: "*"
   MetricPictrueLambda:
     Type: AWS::Lambda::Function
     Properties:
       Code:
         ImageUri:
           Fn::Join:
-            - ''
+            - ""
             - - Ref: AWS::AccountId
               - >-
                 .dkr.ecr.ap-southeast-1.amazonaws.com/python39-matplotlib-lambda:latest
@@ -393,7 +396,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -408,7 +411,7 @@ Resources:
       Policies:
         - PolicyName: root
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -421,13 +424,7 @@ Resources:
                   - logs:*
                   - dynamodb:*
                   - states:*
-                Resource: '*'
-  CodeBuildSourceCredential:
-    Type: AWS::CodeBuild::SourceCredential
-    Properties:
-      AuthType: PERSONAL_ACCESS_TOKEN
-      ServerType: GITHUB
-      Token: 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
+                Resource: "*"
   BuildPanoramaApp:
     Type: AWS::CodeBuild::Project
     Properties:
@@ -443,16 +440,11 @@ Resources:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_LARGE
         Image: aws/codebuild/standard:5.0
-        PrivilegedMode: 'true'
+        PrivilegedMode: "true"
       Source:
         BuildSpec: deployment/buildspec.yaml
-        Auth:
-          Resource:
-            Ref: CodeBuildSourceCredential
-          Type: OAUTH
-        Location: https://github.com/hardco2020/aws-ppe.git
+        Location: https://github.com/hardco2020/aws-ppe-test1.git
         Type: GITHUB
-      SourceVersion: dev/auto-deploy
   ModelStateMachine:
     Type: AWS::StepFunctions::StateMachine
     Properties:
@@ -604,7 +596,7 @@ Resources:
             }
           - AccountId:
               Ref: AWS::AccountId
-          - Env:
+            Env:
               Ref: env
             Resource: arn:aws-cn:states:::lambda:invoke
       RoleArn:
@@ -627,7 +619,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -639,12 +631,12 @@ Resources:
       Policies:
         - PolicyName: root
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
                   - dynamodb:*
-                Resource: '*'
+                Resource: "*"
   IotTopic:
     Type: AWS::IoT::TopicRule
     Properties:
@@ -664,7 +656,7 @@ Resources:
                   - Arn
               TableName:
                 Fn::Join:
-                  - '-'
+                  - "-"
                   - - Event
                     - Ref: env
         Description: >-

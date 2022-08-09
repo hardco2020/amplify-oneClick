@@ -1,5 +1,5 @@
 {
-  "Description": "Root Stack for AWS Amplify Console",
+  "Description": "Root Stack for AWS Amplify CLI",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "DeploymentBucketName": {
@@ -155,161 +155,170 @@
     "hostingamplifyhosting": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
         "Parameters": {
-          "appId": "d1cit8im6d0a3j",
+          "appId": "d2bo2woks3a1xn",
           "type": "manual",
-          "env": "test"
+          "env": "dev"
+        }
+      }
+    },
+    "customcustomResource291b215b": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/custom/customResource291b215b-cloudformation-template.yaml",
+        "Parameters": {
+          "env": "dev"
         }
       }
     },
     "functioncameraLambda": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/cameraLambda-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/cameraLambda-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/cameraLambda-79497253485945626b33-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/cameraLambda-6e614b42485a58766171-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionamplifyppetest140e0b5b3": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/amplifyppetest140e0b5b3-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/amplifyppetest140e0b5b3-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/amplifyppetest140e0b5b3-6953344d757051317378-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/amplifyppetest140e0b5b3-41397a50616c4f7a3541-build.zip",
+          "env": "dev"
         }
       }
     },
     "functiondeviceLambda": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/deviceLambda-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/deviceLambda-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/deviceLambda-4e6f41486d4b644a7744-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/deviceLambda-664748572b77304e564d-build.zip",
+          "env": "dev"
         }
       }
     },
     "functioninvokeStep": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/invokeStep-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/invokeStep-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/invokeStep-45556c50576c436d4165-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/invokeStep-4a5152695056424e6c4d-build.zip",
+          "env": "dev"
         }
       }
     },
     "functioncreateTrainingJob": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/createTrainingJob-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/createTrainingJob-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/createTrainingJob-397436616d5447416534-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/createTrainingJob-5078484a533873732f68-build.zip",
+          "env": "dev"
         }
       }
     },
     "functioncheckTrainingJobStatus": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/checkTrainingJobStatus-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/checkTrainingJobStatus-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/checkTrainingJobStatus-4e6a644b424b36454438-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/checkTrainingJobStatus-6d566973447157475142-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionppaUploadMetricsToS3": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/ppaUploadMetricsToS3-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ppaUploadMetricsToS3-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/ppaUploadMetricsToS3-4737757235626d367141-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/ppaUploadMetricsToS3-774242444a3878683272-build.zip",
+          "env": "dev"
         }
       }
     },
     "functiontriggerCodeBuild": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/triggerCodeBuild-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/triggerCodeBuild-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/triggerCodeBuild-4e54704e6f6457733639-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/triggerCodeBuild-5a542f61416450343168-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionlistModel": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/listModel-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/listModel-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/listModel-416957326e37696c734c-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/listModel-6a726974334e4d566141-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionppaDeployment": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/ppaDeployment-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ppaDeployment-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/ppaDeployment-456e674f2f43504c5572-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/ppaDeployment-44436273564a76616153-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionlistEvent": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/listEvent-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/listEvent-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/listEvent-716547316a706f375151-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/listEvent-47533057537069495669-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionVerifyEvent": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/VerifyEvent-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/VerifyEvent-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/VerifyEvent-7a63494a425632493152-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/VerifyEvent-2b6b7353366d577a4a4c-build.zip",
+          "env": "dev"
         }
       }
     },
     "functionExportEvent": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/function/ExportEvent-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ExportEvent-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-amplifyppetest1-test-173503-deployment",
-          "s3Key": "amplify-builds/ExportEvent-386b4b4e526e45505169-build.zip",
-          "env": "test"
+          "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
+          "s3Key": "amplify-builds/ExportEvent-44503575544d41586b50-build.zip",
+          "env": "dev"
         }
       }
     },
     "authamplifyppetest1": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/auth/amplifyppetest1-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/auth/amplifyppetest1-cloudformation-template.json",
         "Parameters": {
           "identityPoolName": "amplifyppetest1_identitypool_6292e455",
           "allowUnauthenticatedIdentities": true,
@@ -353,14 +362,14 @@
           "breakCircularDependency": true,
           "useEnabledMfas": true,
           "dependsOn": "",
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "apibackend": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/api/backend-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/api/backend-cloudformation-template.json",
         "Parameters": {
           "functioncameraLambdaName": {
             "Fn::GetAtt": [
@@ -458,14 +467,14 @@
               "Outputs.Arn"
             ]
           },
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "apiapie2a152f1": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/api/apie2a152f1-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/api/apie2a152f1-cloudformation-template.json",
         "Parameters": {
           "functionamplifyppetest140e0b5b3Name": {
             "Fn::GetAtt": [
@@ -479,69 +488,69 @@
               "Outputs.Arn"
             ]
           },
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "storageCamera": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/storage/Camera-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Camera-cloudformation-template.json",
         "Parameters": {
           "tableName": "Camera",
           "partitionKeyName": "camera_id",
           "partitionKeyType": "S",
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "storageDevice": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/storage/Device-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Device-cloudformation-template.json",
         "Parameters": {
           "tableName": "Device",
           "partitionKeyName": "device_id",
           "partitionKeyType": "S",
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "storageppaModel": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/storage/ppaModel-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/ppaModel-cloudformation-template.json",
         "Parameters": {
           "tableName": "ppaModel",
           "partitionKeyName": "model_name",
           "partitionKeyType": "S",
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "storageDeployment": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/storage/Deployment-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Deployment-cloudformation-template.json",
         "Parameters": {
           "tableName": "Deployment",
           "partitionKeyName": "DeploymentID",
           "partitionKeyType": "S",
-          "env": "test"
+          "env": "dev"
         }
       }
     },
     "storageEvent": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-test-173503-deployment/amplify-cfn-templates/storage/Event-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Event-cloudformation-template.json",
         "Parameters": {
           "tableName": "Event",
           "partitionKeyName": "CameraID",
           "partitionKeyType": "S",
           "sortKeyName": "TimeStamp",
           "sortKeyType": "N",
-          "env": "test"
+          "env": "dev"
         }
       }
     },
