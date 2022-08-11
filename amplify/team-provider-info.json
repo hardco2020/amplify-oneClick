@@ -140,7 +140,7 @@
         },
         "VerifyEvent": {
           "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
-          "s3Key": "amplify-builds/VerifyEvent-2b6b7353366d577a4a4c-build.zip"
+          "s3Key": "amplify-builds/VerifyEvent-4e766d4f3948467a7872-build.zip"
         },
         "ExportEvent": {
           "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",

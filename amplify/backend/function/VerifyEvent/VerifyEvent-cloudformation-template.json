@@ -165,7 +165,8 @@
               "Effect": "Allow",
               "Action": [
                 "s3:*",
-                "dynamodb:*"
+                "dynamodb:*",
+                "ssm:*"
               ],
               "Resource": "*"
             }

@@ -21,7 +21,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
         "logicalId": "hostingamplifyhosting"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.589Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.385Z",
       "output": {},
       "lastPushDirHash": "+g7Vx6El4MkCR3EOGjplwRN6w6M="
     }
@@ -35,7 +35,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/custom/customResource291b215b-cloudformation-template.yaml",
         "logicalId": "customcustomResource291b215b"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:11.357Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.388Z",
       "output": {},
       "lastPushDirHash": "bPK4QtLELYNNLVDJ2YzCAU2abHQ="
     }
@@ -57,7 +57,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/cameraLambda-cloudformation-template.json",
         "logicalId": "functioncameraLambda"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.598Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.391Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:cameraLambda-dev",
@@ -82,7 +82,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/amplifyppetest140e0b5b3-cloudformation-template.json",
         "logicalId": "functionamplifyppetest140e0b5b3"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.602Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.394Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:amplifyppetest140e0b5b3-dev",
@@ -107,7 +107,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/deviceLambda-cloudformation-template.json",
         "logicalId": "functiondeviceLambda"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.605Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.397Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:deviceLambda-dev",
@@ -132,7 +132,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/invokeStep-cloudformation-template.json",
         "logicalId": "functioninvokeStep"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.610Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.400Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:invokeStep-dev",
@@ -157,7 +157,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/createTrainingJob-cloudformation-template.json",
         "logicalId": "functioncreateTrainingJob"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.612Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.403Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:createTrainingJob-dev",
@@ -182,7 +182,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/checkTrainingJobStatus-cloudformation-template.json",
         "logicalId": "functioncheckTrainingJobStatus"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.615Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.410Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:checkTrainingJobStatus-dev",
@@ -207,7 +207,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ppaUploadMetricsToS3-cloudformation-template.json",
         "logicalId": "functionppaUploadMetricsToS3"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.618Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.413Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:ppaUploadMetricsToS3-dev",
@@ -232,7 +232,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/triggerCodeBuild-cloudformation-template.json",
         "logicalId": "functiontriggerCodeBuild"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.621Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.415Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:triggerCodeBuild-dev",
@@ -257,7 +257,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/listModel-cloudformation-template.json",
         "logicalId": "functionlistModel"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.625Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.422Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:listModel-dev",
@@ -282,7 +282,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ppaDeployment-cloudformation-template.json",
         "logicalId": "functionppaDeployment"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.627Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.424Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:ppaDeployment-dev",
@@ -307,7 +307,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/listEvent-cloudformation-template.json",
         "logicalId": "functionlistEvent"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.630Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.427Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:listEvent-dev",
@@ -320,26 +320,26 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "lastBuildTimeStamp": "2022-08-08T15:03:12.209Z",
+      "lastBuildTimeStamp": "2022-08-11T07:39:32.616Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2022-08-08T15:03:21.739Z",
-      "distZipFilename": "VerifyEvent-2b6b7353366d577a4a4c-build.zip",
+      "lastPackageTimeStamp": "2022-08-11T07:39:34.511Z",
+      "distZipFilename": "VerifyEvent-4e766d4f3948467a7872-build.zip",
       "s3Bucket": {
         "deploymentBucketName": "amplify-amplifyppetest1-dev-214902-deployment",
-        "s3Key": "amplify-builds/VerifyEvent-2b6b7353366d577a4a4c-build.zip"
+        "s3Key": "amplify-builds/VerifyEvent-4e766d4f3948467a7872-build.zip"
       },
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/VerifyEvent-cloudformation-template.json",
         "logicalId": "functionVerifyEvent"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.633Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:01.137Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:VerifyEvent-dev",
         "Name": "VerifyEvent-dev",
         "LambdaExecutionRole": "amplifyppetest1LambdaRole34ba1307-dev"
       },
-      "lastPushDirHash": "k03szmLtYIEEPBxAI93q44Y7Kxk="
+      "lastPushDirHash": "O3TZvlUI8fc6I9O0x0Rlj8iq9iw="
     },
     "ExportEvent": {
       "build": true,
@@ -357,7 +357,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/function/ExportEvent-cloudformation-template.json",
         "logicalId": "functionExportEvent"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.636Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.433Z",
       "output": {
         "Region": "ap-southeast-1",
         "Arn": "arn:aws:lambda:ap-southeast-1:369806622574:function:ExportEvent-dev",
@@ -395,7 +395,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/auth/amplifyppetest1-cloudformation-template.json",
         "logicalId": "authamplifyppetest1"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.639Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.435Z",
       "output": {
         "UserPoolId": "ap-southeast-1_D26i3NNmH",
         "AppClientIDWeb": "31q5o8mlc39ca5oec13e85jcjd",
@@ -482,7 +482,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/api/backend-cloudformation-template.json",
         "logicalId": "apibackend"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.642Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.438Z",
       "output": {
         "ApiName": "backend",
         "RootUrl": "https://sv4w6pff3g.execute-api.ap-southeast-1.amazonaws.com/dev",
@@ -507,7 +507,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/api/apie2a152f1-cloudformation-template.json",
         "logicalId": "apiapie2a152f1"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.645Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.440Z",
       "output": {
         "ApiName": "apie2a152f1",
         "RootUrl": "https://jaa2su82ra.execute-api.ap-southeast-1.amazonaws.com/dev",
@@ -524,7 +524,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Camera-cloudformation-template.json",
         "logicalId": "storageCamera"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.649Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.443Z",
       "output": {
         "PartitionKeyName": "camera_id",
         "Region": "ap-southeast-1",
@@ -542,7 +542,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Device-cloudformation-template.json",
         "logicalId": "storageDevice"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.652Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.445Z",
       "output": {
         "PartitionKeyName": "device_id",
         "Region": "ap-southeast-1",
@@ -560,7 +560,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/ppaModel-cloudformation-template.json",
         "logicalId": "storageppaModel"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.655Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.447Z",
       "output": {
         "PartitionKeyName": "model_name",
         "Region": "ap-southeast-1",
@@ -578,7 +578,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Deployment-cloudformation-template.json",
         "logicalId": "storageDeployment"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.657Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.450Z",
       "output": {
         "PartitionKeyName": "DeploymentID",
         "Region": "ap-southeast-1",
@@ -596,7 +596,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplifyppetest1-dev-214902-deployment/amplify-cfn-templates/storage/Event-cloudformation-template.json",
         "logicalId": "storageEvent"
       },
-      "lastPushTimeStamp": "2022-08-09T12:45:10.662Z",
+      "lastPushTimeStamp": "2022-08-11T07:42:00.452Z",
       "output": {
         "PartitionKeyName": "CameraID",
         "SortKeyName": "TimeStamp",

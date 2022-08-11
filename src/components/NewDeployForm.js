@@ -53,7 +53,7 @@ class  NewDeployForm extends React.Component {
       Deployment_ID:uuidv4(),
       Device_ID:'111',
       Component_Version_ID:'333',
-      targetArn:'arn:aws:iot:region:account-id:thing/thingName',
+      targetArn:'s3://app-graph-4c1bb430-172b-11ed-b380-0647bab7fb5a/graph/ppa-2022-08-08-16-00-25/graph.json',
       deploymentName:'Cam_1 Deployment',
       components:JSON.stringify({"componentVersion": "1.0.0", "configurationUpdate": {"reset": [ "/network/useHttps", "/tags" ], "merge": {"tags":["/boiler/1/temperature","/boiler/1/pressure","/boiler/2/temperature","/boiler/2/pressure"]}}}),
       deploymentPolicies:JSON.stringify({"componentUpdatePolicy": {"action": "NOTIFY_COMPONENTS", "timeoutInSeconds": 30 }, "configurationValidationPolicy": {"timeoutInSeconds": 60 }, "failureHandlingPolicy": "ROLLBACK" }),
