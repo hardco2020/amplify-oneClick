@@ -173,6 +173,9 @@ Resources:
               - Effect: Allow
                 Action: ssm:*
                 Resource: "*"
+              - Effect: Allow
+                Action: iot:*
+                Resource: "*"
   WebAppSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
