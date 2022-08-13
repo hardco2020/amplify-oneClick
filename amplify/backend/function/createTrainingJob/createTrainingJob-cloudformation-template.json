@@ -191,7 +191,7 @@
                     {
                       "Ref": "AWS::AccountId"
                     },
-                    ":amplify-amplifyppetest1-*"
+                    ":role/amplify-amplifyppetest1-*"
                   ]
                 ]
               }
