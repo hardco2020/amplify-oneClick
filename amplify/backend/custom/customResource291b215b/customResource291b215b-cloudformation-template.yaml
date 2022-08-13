@@ -284,6 +284,10 @@ Resources:
                 sudo mkdir /home/ec2-user/ppa
               - |
                 cd /home/ec2-user/ppa
+              - |
+                bash matlab_pull_and_push.sh ap-southeast-1
+              - |
+                bash gary_pull_and_push.sh ap-southeast-1
               - >
                 sudo git clone
                 https://github.com/hardco2020/ppa_model_script.git
