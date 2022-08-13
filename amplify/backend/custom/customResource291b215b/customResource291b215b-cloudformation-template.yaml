@@ -155,38 +155,6 @@ Resources:
               SSEAlgorithm: AES256
       VersioningConfiguration:
         Status: Enabled
-  PpeAccessPolicy:
-    Type: AWS::IAM::Policy
-    Properties:
-      Groups:
-        - PPEGroup
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Action:
-              - "ssm:*"
-              - "codebuild:*"
-              - "states:*"
-              - "iot:*"
-              - "s3:*"
-              - "dynamodb:*"
-              - "lambda:*"
-              - "sagemaker:*"
-              - "ecs:*"
-              - "ec2:*"
-            Resource: "*"
-          - Effect: Allow
-            Action:
-              - "iam: PassRole"
-              - "iam: GetRole"
-            Resource:
-              Fn::Join:
-                - ""
-                - - "arn:aws:iam::"
-                  - !Ref "AWS::AccountId"
-                  - :role/amplify*"
-      PolicyName: PpeInlinePolicy
   SageMakerRole:
     Type: AWS::IAM::Role
     Properties:
