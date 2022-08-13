@@ -1,6 +1,10 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/no-multi-comp */
 // import { Table, Header, SpaceBetween, Button, TextFilter, Pagination } from '@amzn/awsui-components-react/polaris';
+<<<<<<< HEAD
+=======
+i
+>>>>>>> 533354a (same)
 import Table from 'aws-northstar/components/Table';
 import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
