@@ -158,6 +158,8 @@ Resources:
   PpeAccessPolicy:
     Type: AWS::IAM::Policy
     Properties:
+      Groups:
+        - PPEGroup
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
