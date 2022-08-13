@@ -123,6 +123,10 @@ Resources:
             - Fn::GetAtt:
                 - RandomParameter
                 - Value
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
   S3BucketModelRetrainCreation:
     Type: AWS::S3::Bucket
     Properties:
@@ -133,6 +137,10 @@ Resources:
             - Fn::GetAtt:
                 - RandomParameter
                 - Value
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
   SageMakerRole:
     Type: AWS::IAM::Role
     Properties:
