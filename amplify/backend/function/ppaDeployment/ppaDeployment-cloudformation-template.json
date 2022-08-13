@@ -167,8 +167,7 @@
                 "s3:*",
                 "dynamodb:*",
                 "panorama:*",
-                "ssm:*",
-                "iam:passRole"
+                "ssm:*"
               ],
               "Resource": "*"
             }
