@@ -180,11 +180,6 @@
               "Effect": "Allow",
               "Action": "sagemaker:*",
               "Resource": "*"
-            },
-            {
-              "Effect": "Allow",
-              "Action": "iam:*",
-              "Resource": "*"
             }
           ]
         }
