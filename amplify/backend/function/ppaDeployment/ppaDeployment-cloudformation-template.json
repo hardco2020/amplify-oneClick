@@ -170,6 +170,23 @@
                 "ssm:*"
               ],
               "Resource": "*"
+            },
+            {
+              "Effect":"Allow",
+              "Action": [
+                "iam:PassRole"
+              ],
+              "Resource": {
+                "Fn::Join": [
+                  "", [
+                    "arn:aws:iam::",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":role/amplify*"
+                  ]
+                ]
+              }
             }
           ]
         }
