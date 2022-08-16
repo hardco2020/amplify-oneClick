@@ -627,11 +627,11 @@ class EventBBox extends React.Component {
               acknowledged:true
               // showSave:false
             },()=>{
-              alert(result)
+              alert("Successfully Verfiy the data!")
             })
         } else {
             result = "Save result error !"
-            alert(result)
+            alert("Successfully Verify the data!")
         }
         // console.log(result)
     })

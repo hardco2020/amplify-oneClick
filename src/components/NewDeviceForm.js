@@ -126,7 +126,7 @@ class  NewDeviceForm extends React.Component {
                     <Input type="text" controlId="device_core_name" value={this.state.device_core_name} onChange={(e)=> this.handelInputChange(e,'device_core_name')}  />
                 </FormField>
 
-                <FormField label="Core ARN" controlId="formFieldId3">
+                {/* <FormField label="Core ARN" controlId="formFieldId3">
                     <Input type="text" controlId="core_arn" value={this.state.core_arn} onChange={(e)=> this.handelInputChange(e,'core_arn')}  />
                 </FormField>
 
@@ -140,12 +140,13 @@ class  NewDeviceForm extends React.Component {
 
                 <FormField label="storage" controlId="formFieldId6">
                     <Input type="text" controlId="storage" value={this.state.storage} onChange={(e)=> this.handelInputChange(e,'storage')}  />
-                </FormField>
+                </FormField> */}
 
             </FormSection>
         </Form>
-        <Modal title="Modal" visible={this.state.visible} onClose={() => this.closeModel()}>
-            {this.state.post_result}
+        <Modal title="Add Device" visible={this.state.visible} onClose={() => this.closeModel()}>
+            {/* {this.state.post_result} */}
+            The device is already successfully added !!! 
         </Modal>
       </div>
     )

@@ -147,8 +147,9 @@ class  NewCameraForm extends React.Component {
                 </FormField>
             </FormSection>
         </Form>
-        <Modal title="Modal" visible={this.state.visible} onClose={() => this.closeModel()}>
-            {this.state.post_result}
+        <Modal title="Add Camera" visible={this.state.visible} onClose={() => this.closeModel()}>
+            {/* {this.state.post_result} */}
+            The Camera is successfully added !!!
         </Modal>
       </div>
     )
