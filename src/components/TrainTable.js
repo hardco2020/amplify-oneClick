@@ -86,18 +86,18 @@ const columnDefinitions = [
             return null;
         }
     },
-    {
-        'id': 'model.cost',
-        width: 150,
-        Header: 'Cost',
-        accessor: 'cost'
-    },  
-    {
-        'id': 'model.size',
-        width: 150,
-        Header: 'Size',
-        accessor: 'size'
-    },
+    // {
+    //     'id': 'model.cost',
+    //     width: 150,
+    //     Header: 'Cost',
+    //     accessor: 'cost'
+    // },  
+    // {
+    //     'id': 'model.size',
+    //     width: 150,
+    //     Header: 'Size',
+    //     accessor: 'size'
+    // },
     {
         'id': 'trainingjob.creation_time',
         width: 150,

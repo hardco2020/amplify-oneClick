@@ -290,8 +290,9 @@ class  NewDeployForm extends React.Component {
 
             </FormSection>
         </Form>
-        <Modal title="Modal" visible={this.state.visible} onClose={() => this.closeModel()}>
-            {this.state.post_result}
+        <Modal title="Deploy" visible={this.state.visible} onClose={() => this.closeModel()}>
+            {/* {this.state.post_result} */}
+            Successfully Deploy the application!!!
         </Modal></> }
 
       </div>
