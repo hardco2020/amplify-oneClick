@@ -42,7 +42,6 @@ def post(event, account_id):
     # Use Model_Version_ID for Panorama camera list
 
     cameras = body["Model_Version_ID"].split(",")
-    eprint("cameras", cameras)
 
     for camera in cameras:
         override_camera_template["nodeGraphOverrides"]["packages"].append(
