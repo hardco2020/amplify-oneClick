@@ -206,7 +206,7 @@ class NewDeployForm extends React.Component {
     console.log(e);
     let nameArray = []
     e.forEach((camera) => {
-      nameArray.push(this.state.Cameras.find((o) => o.NodeId === camera.value).Name);
+      nameArray.push(this.state.Cameras.find((o) => o.NodeId === camera.value).NodeId);
     })
     const name = nameArray.join();
     // const selected = this.state.All_Cameras_Options.find((o) => o.value === e.target.value);
