@@ -155,7 +155,6 @@ class CameraCfgTable extends React.Component {
                     items={this.state.job_list}
                     onSelectionChange={(item) => { this.setState({ current: item }) }}
                     // getRowId={this.getRowId}
-                    disableRowSelect={true}
                     loading={this.state.loading}
                     disableSettings={false}
                 // onFetchData={this.handleFetchData}
