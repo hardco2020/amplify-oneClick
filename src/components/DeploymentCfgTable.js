@@ -132,6 +132,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     let history = useHistory();
     const [loading, setLoading] = useState(true);
     const [joblist, setJoblist] = useState([]);
+    const [current, setCurrent] = useState({});
     // const [current, setCurrent] = useState({});
     // console.log(current);
     useEffect(() => {
@@ -195,9 +196,16 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     const jump_to_newCfg = () => {
         history.push("/NewDeployConfig");
     }
+    const delete_application = async () => {
+        const response = await API.del('backend', 'deployment')
+        console.log(response)
+    }
 
     const tableActions = (
         <Inline>
+            <Button variant="primary" onClick={() => delete_application()} disabled={current.length === 0 ? true : false}>
+                {t('Delete Device')}
+            </Button>
             <Button variant="primary" onClick={() => jump_to_newCfg()}>
                 {t('New Deployment')}
             </Button>
@@ -211,7 +219,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
                 tableTitle={t('Deployment Config')}
                 columnDefinitions={columnDefinitions}
                 items={joblist}
-                disableRowSelect="true"
+                onSelectionChange={(item) => { setCurrent(item) }}
                 disableGroupBy={false}
                 defaultGroups={['DefaultRuntimeContextDeviceName']}
                 loading={loading}

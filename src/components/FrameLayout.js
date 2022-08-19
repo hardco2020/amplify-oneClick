@@ -68,7 +68,7 @@ class FrameLayout extends React.Component {
         // },
         {
             "type": SideNavigationItemType.LINK,
-            "text": t("Model Training"),
+            "text": t("Application"),
             "expanded": true,
             "items": [
                 {
@@ -338,7 +338,7 @@ class FrameLayout extends React.Component {
                     href: "/",
                 },
                 {
-                    text: t("Model Training"),
+                    text: t("Application"),
                     href: "/TrainingList",
                 },
                 {
@@ -457,7 +457,7 @@ class FrameLayout extends React.Component {
                     href: "/",
                 },
                 {
-                    text: t("Config"),
+                    text: t("Application"),
                     href: "/DeployConfig",
                 },
                 {
@@ -711,7 +711,9 @@ class FrameLayout extends React.Component {
         const _header = <Header
             title={t("Out of Box AI Demo")}
             rightContent={
+
                 <Box alignItems="center" display="flex" >
+                    <Link href="https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#first-run">Panorama</Link>
                     <ButtonDropdown content={t('lang')} items={menuItems} darkTheme />
                 </Box>
             }
