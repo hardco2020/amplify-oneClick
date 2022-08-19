@@ -18,71 +18,96 @@ def post(event):
     table = db.Table(TABLE_NAME)
     body = json.loads(event["body"])
 
-    CAMERA_NAME = body["brand"]
-    CAMERA_CREDS = {
-        "Username": body["location"],
-        "Password": body["network"],
-        "StreamUrl": body["address"],
-    }
-
-    print(body["camera_id"])
-    print(body["address"])
-    print(body["description"])
-    print(body["location"])
-    print(body["brand"])
-    print(body["network"])
-    print(body["image_size"])
-
-    try:
-        pano_res = pano_client.create_node_from_template_job(
-            NodeName=CAMERA_NAME,
-            OutputPackageName=CAMERA_NAME,
-            OutputPackageVersion="0.1",
-            TemplateParameters=CAMERA_CREDS,
-            TemplateType="RTSP_CAMERA_STREAM",
-        )
-    except Exception as e:
-        eprint("Error !!")
-        eprint(e)
-        return {
-            "statusCode": 404,
-            "body": "Camera Error",
-            "headers": {
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*",
-            },
-        }
-
-    try:
-        response = table.put_item(
-            Item={
-                "camera_id": body["camera_id"],
-                "address": body["address"],
-                "description": body["description"],
-                "location": body["location"],
-                "brand": body["brand"],
-                "network": body["network"],
-                "image_size": body["image_size"],
-                "JobId": pano_res["JobId"],
+    if "DELETE" in body:
+        try:
+            pano_client.delete_package(ForceDelete=True, PackageId=body["PackageId"])
+            return {
+                "statusCode": 200,
+                "body": "Delete Successful !!!",
+                "headers": {
+                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+                },
             }
-        )
-        eprint("OK !!")
-        eprint(response)
-        return {
-            "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
-            "body": body["camera_id"],
-            "headers": {
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*",
-            },
+        except Exception as e:
+            # raise e
+            eprint(e)
+            return {
+                "statusCode": 500,
+                "body": "Error!!",
+                "headers": {
+                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+                },
+            }
+    else:
+        CAMERA_NAME = body["brand"]
+        CAMERA_CREDS = {
+            "Username": body["location"],
+            "Password": body["network"],
+            "StreamUrl": body["address"],
         }
-    except Exception as e:
-        # raise e
-        eprint("Error !!")
-        eprint(e)
-        return {"statusCode": 500, "body": json.dumps("error")}
+
+        print(body["camera_id"])
+        print(body["address"])
+        print(body["description"])
+        print(body["location"])
+        print(body["brand"])
+        print(body["network"])
+        print(body["image_size"])
+
+        try:
+            pano_res = pano_client.create_node_from_template_job(
+                NodeName=CAMERA_NAME,
+                OutputPackageName=CAMERA_NAME,
+                OutputPackageVersion="0.1",
+                TemplateParameters=CAMERA_CREDS,
+                TemplateType="RTSP_CAMERA_STREAM",
+            )
+        except Exception as e:
+            eprint("Error !!")
+            eprint(e)
+            return {
+                "statusCode": 404,
+                "body": "Camera Error",
+                "headers": {
+                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "*",
+                },
+            }
+
+        try:
+            response = table.put_item(
+                Item={
+                    "camera_id": body["camera_id"],
+                    "address": body["address"],
+                    "description": body["description"],
+                    "location": body["location"],
+                    "brand": body["brand"],
+                    "network": body["network"],
+                    "image_size": body["image_size"],
+                    "JobId": pano_res["JobId"],
+                }
+            )
+            eprint("OK !!")
+            eprint(response)
+            return {
+                "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
+                "body": body["camera_id"],
+                "headers": {
+                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "*",
+                },
+            }
+        except Exception as e:
+            # raise e
+            eprint("Error !!")
+            eprint(e)
+            return {"statusCode": 500, "body": json.dumps("error")}
 
 
 def get(event):

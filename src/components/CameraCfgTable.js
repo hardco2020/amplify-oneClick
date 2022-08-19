@@ -101,6 +101,7 @@ class CameraCfgTable extends React.Component {
                     _tmp['Name'] = item['Name']
                     _tmp['Description'] = item['Description']
                     _tmp['CreatedTime'] = item['CreatedTime']
+                    _tmp['PackageId'] = item['PackageId']
                     // _tmp['brand'] = item['brand']
                     // _tmp['network'] = item['network']
                     // _tmp['image_size'] = item['image_size']    
@@ -121,7 +122,12 @@ class CameraCfgTable extends React.Component {
     }
 
     async delete_camera() {
-        await API.del('backend', '/camera').then(res => {
+        payload = {
+            "DELETE": true,
+            "PackageId": this.state.current['PackageId']
+        }
+        console.log(payload)
+        await API.post('backend', '/camera', payload).then(res => {
             console.log(res);
         })
     }
@@ -135,7 +141,7 @@ class CameraCfgTable extends React.Component {
 
         const tableActions = (
             <Inline>
-                <Button variant="primary" onClick={() => this.delete_camera()} disabled={this.state.current.length !== 0 ? false : true}>
+                <Button onClick={() => this.delete_camera()} disabled={this.state.current.length !== 0 ? false : true}>
                     {t('Delete Camera')}
                 </Button>
                 <Button variant="primary" onClick={() => this.jump_to_newCfg()}>

@@ -218,9 +218,14 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
         console.log(response)
     }
 
+    const handleSelect = (e) => {
+        console.log(e)
+        setCurrent(e)
+    }
+
     const tableActions = (
         <Inline>
-            <Button variant="primary" onClick={() => delete_application()} disabled={current.length > 0 && current.HealthStatus == 'RUNNING' ? false : true}>
+            <Button variant="primary" onClick={() => delete_application()} disabled={current.length > 0 && current.HealthStatus === 'RUNNING' ? false : true}>
                 {t('Remove Application')}
             </Button>
             <Button variant="primary" onClick={() => jump_to_newCfg()}>
@@ -237,7 +242,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
                 columnDefinitions={columnDefinitions}
                 multiSelect={false}
                 items={joblist}
-                onSelectionChange={(item) => { setCurrent(item) }}
+                onSelectionChange={(item) => { handleSelect(item) }}
                 disableGroupBy={false}
                 defaultGroups={['DefaultRuntimeContextDeviceName']}
                 loading={loading}

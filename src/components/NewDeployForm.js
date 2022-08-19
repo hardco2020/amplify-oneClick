@@ -5,6 +5,7 @@ import FormField from 'aws-northstar/components/FormField'
 import FormSection from 'aws-northstar/components/FormSection';
 import Input from 'aws-northstar/components/Input';
 import Select from 'aws-northstar/components/Select';
+import Multiselect from 'aws-northstar/components/Multiselect';
 
 import Modal from 'aws-northstar/components/Modal';
 import axios from 'axios';
@@ -242,7 +243,7 @@ class NewDeployForm extends React.Component {
             </FormField>
 
             <FormField label="Device Name" controlId="formFieldId1">
-              <Select
+              <Multiselect
                 options={this.state.All_Devices_Options}
                 onChange={(e) => this.handleDeviceSelectedChange(e)}
                 selectedOption={this.state.Chose_Device}
