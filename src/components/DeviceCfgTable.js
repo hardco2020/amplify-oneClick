@@ -155,7 +155,7 @@ class DeviceCfgTable extends React.Component {
 
     const tableActions = (
       <Inline>
-        <Button variant="primary" onClick={() => this.jump_to_newCfg()} disabled={this.state.current.length === 0 ? true : false}>
+        <Button onClick={() => this.jump_to_newCfg()} disabled={this.state.current.length === 0 ? true : false}>
           {t('Delete Device')}
         </Button>
       </Inline>

@@ -214,14 +214,17 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
         history.push("/NewDeployConfig");
     }
     const delete_application = async () => {
-        const response = await API.del('backend', 'deployment')
+        const payload = {
+            "ApplicationInstanceId": current.ApplicationInstanceId
+        }
+        const response = await API.del('backend', 'deployment', { body: payload })
         console.log(response)
     }
 
 
     const tableActions = (
         <Inline>
-            <Button variant="primary" onClick={() => delete_application()} disabled={current.length > 0 && current[0].Status.startwith('DEPLOYMENT') ? false : true}>
+            <Button variant="primary" onClick={() => delete_application()} disabled={current.length > 0 && current[0].Status.startsWith('DEPLOYMENT') ? false : true}>
                 {t('Remove Application')}
             </Button>
             <Button variant="primary" onClick={() => jump_to_newCfg()}>

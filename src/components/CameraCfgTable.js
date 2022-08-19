@@ -122,12 +122,11 @@ class CameraCfgTable extends React.Component {
     }
 
     async delete_camera() {
-        const payloads = {
-            "DELETE": true,
+        const payload = {
             "PackageId": this.state.current[0]['PackageId']
         }
-        console.log(payloads)
-        await API.post('backend', '/camera', payloads).then(res => {
+        console.log(payload)
+        await API.del('backend', '/camera', { body: payload }).then(res => {
             console.log(res);
         })
     }
