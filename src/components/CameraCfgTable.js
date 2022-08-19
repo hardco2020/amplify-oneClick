@@ -27,8 +27,8 @@ const MapDispatchTpProps = (dispatch) => {
 const columnDefinitions = [
     {
         'id': 'NodeId',
-        width: 300,
-        Header: 'ID',
+        width: 500,
+        Header: 'Camera ID',
         accessor: 'NodeId'
     },
     {
@@ -52,7 +52,7 @@ const columnDefinitions = [
     {
         'id': 'CreatedTime',
         width: 400,
-        Header: 'Name',
+        Header: 'Created Time',
         accessor: 'CreatedTime'
     },
     // {

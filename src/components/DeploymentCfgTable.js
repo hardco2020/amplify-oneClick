@@ -1,55 +1,99 @@
 import Table from 'aws-northstar/components/Table';
-// import StatusIndicator from 'aws-northstar/components/StatusIndicator';
+import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
 
 import { useHistory } from 'react-router-dom';
-import React,{useEffect,useState}  from 'react';
-import { connect } from 'react-redux' 
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux'
 
 import axios from 'axios'
-import { API } from 'aws-amplify'; 
+import { API } from 'aws-amplify';
 
-import {withTranslation} from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 const mapStateToProps = state => {
     return { session: state.session }
-  }
-  const MapDispatchTpProps = (dispatch) => {
+}
+const MapDispatchTpProps = (dispatch) => {
     return {
-        changeLang: (key)=>dispatch({type: 'change_language',data: key})
+        changeLang: (key) => dispatch({ type: 'change_language', data: key })
     }
-  }
+}
 
-  const columnDefinitions = [
+const columnDefinitions = [
     {
-        'id': 'Deployment_ID',
+        'id': 'ApplicationInstanceId',
         width: 200,
-        Header: 'ID',
-        accessor: 'Deployment_ID'
+        Header: 'Applicatino ID',
+        accessor: 'ApplicationInstanceId'
     },
     {
-        'id': 'Device_ID',
+        'id': 'Name',
+        width: 300,
+        Header: 'Applicaiton Name',
+        accessor: 'Name'
+    },
+    {
+        'id': 'DefaultRuntimeContextDeviceName',
         width: 200,
         Header: 'Device ID',
-        accessor: 'Device_ID'
+        accessor: 'DefaultRuntimeContextDeviceName'
     },
     {
-        'id': 'Camera_ID',
+        'id': 'HealthStatus',
         width: 200,
-        Header: 'Camera ID',
-        accessor: 'Camera_ID'
+        Header: 'Health Status',
+        accessor: 'HealthStatus',
+        Cell: ({ row }) => {
+            if (row && row.original) {
+                const status = row.original.HealthStatus;
+                switch (status) {
+                    case 'RUNNING':
+                        return <StatusIndicator statusType='positive'>{status}</StatusIndicator>;
+                    case 'ERROR':
+                        return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+                    case 'NOT_AVAILABLE':
+                        return <StatusIndicator statusType='warning'>{status}</StatusIndicator>;
+                    default:
+                        return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+                }
+            }
+            return null;
+        }
     },
+    // {
+    //     'id': 'Camera_ID',
+    //     width: 200,
+    //     Header: 'Camera ID',
+    //     accessor: 'Camera_ID'
+    // },
+    // {
+    //     'id': 'Status',
+    //     width: 300,
+    //     Header: 'Status',
+    //     accessor: 'Status',
+    //     Cell: ({ row }) => {
+    //         if (row && row.original) {
+    //             const status = row.original.status;
+    //             switch (status) {
+    //                 case 'RUNNING':
+    //                     return <StatusIndicator statusType='positive'>{status}</StatusIndicator>;
+    //                 case 'ERROR':
+    //                     return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+    //                 case 'NOT_AVAILABLE':
+    //                     return <StatusIndicator statusType='warning'>{status}</StatusIndicator>;
+    //                 default:
+    //                     return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+    //             }
+    //         }
+    //         return null;
+    //     }
+    // },
     {
-        'id': 'Component_Version_ID',
+        'id': 'Arn',
         width: 300,
-        Header: 'UUID',
-        accessor: 'Component_Version_ID'
-    },
-    {
-        'id': 'Model_Version_ID',
-        width: 300,
-        Header: 'Camera Name',
-        accessor: 'Model_Version_ID'
+        Header: 'Arn',
+        accessor: 'Arn'
     },
     // {
     //     'id': 'targetArn',
@@ -58,10 +102,10 @@ const mapStateToProps = state => {
     //     accessor: 'targetArn'
     // },
     {
-        'id': 'deploymentName',
+        'id': 'CreatedTime',
         width: 300,
-        Header: 'APP Name',
-        accessor: 'deploymentName'
+        Header: 'Created Time',
+        accessor: 'CreatedTime'
     },
     // {
     //     'id': 'components',
@@ -84,35 +128,32 @@ const mapStateToProps = state => {
 ]
 
 
-const DeploymentCfgTable = ({t, changeLang}) =>{
+const DeploymentCfgTable = ({ t, changeLang }) => {
     let history = useHistory();
     const [loading, setLoading] = useState(true);
     const [joblist, setJoblist] = useState([]);
     // const [current, setCurrent] = useState({});
     // console.log(current);
     useEffect(() => {
-        const load_data  = async() =>{
-            await API.get('backend','/deployment').then(res => {
+        const load_data = async () => {
+            await API.get('backend', '/deployment').then(res => {
                 console.log(res)
-                if (res){
+                if (res) {
                     console.log(res)
                     let _tmp_data = []
-                    res.forEach((item)=>{
+                    res.forEach((item) => {
                         let _tmp = {}
-                        _tmp['Deployment_ID'] = item['DeploymentID']
-                        _tmp['Device_ID'] = item['DeviceID']
-                        _tmp['Camera_ID'] = item['CameraID']
-                        _tmp['Component_Version_ID'] = item['ComponentVersionID']
-                        _tmp['Model_Version_ID'] = item['ModelVersionID']
+                        _tmp['ApplicationInstanceId'] = item['ApplicationInstanceId']
+                        _tmp['DefaultRuntimeContextDeviceName'] = item['DefaultRuntimeContextDeviceName']
+                        _tmp['HealthStatus'] = item['HealthStatus']
+                        _tmp['Status'] = item['Status']
+                        _tmp['Arn'] = item['Arn']
                         _tmp['targetArn'] = item['targetArn']
-                        _tmp['deploymentName'] = item['DeploymentName']
-                        _tmp['components'] = item['components']
-                        _tmp['deploymentPolicies'] = item['deploymentPolicies']
-                        _tmp['iotJobConfigurations'] = item['iotJobConfigurations']
-                        
+                        _tmp['CreatedTime'] = item['CreatedTime']
+
                         _tmp_data.push(_tmp)
                     });
-        
+
                     // const test_data =  {
                     //     'Deployment_ID':'cb831c07-2556-4433-ad60-da0720d78113',
                     //     'Device_ID':'123',
@@ -150,34 +191,34 @@ const DeploymentCfgTable = ({t, changeLang}) =>{
         load_data();
     }, [])
 
-    const jump_to_newCfg = () =>{
+    const jump_to_newCfg = () => {
         history.push("/NewDeployConfig");
     }
 
     const tableActions = (
-                <Inline>
-                    <Button variant="primary" onClick={() => jump_to_newCfg()}>
-                        {t('New Deployment')}
-                    </Button>
-                </Inline>
-            );
-    return(
+        <Inline>
+            <Button variant="primary" onClick={() => jump_to_newCfg()}>
+                {t('New Deployment')}
+            </Button>
+        </Inline>
+    );
+    return (
         <>
-        <Table
-        id = "DepCfgTable"
-        actionGroup={tableActions}
-        tableTitle={t('Deployment Config')}
-        columnDefinitions={columnDefinitions}
-        items={joblist}
-        disableRowSelect="true"
-        disableGroupBy={false}
-        defaultGroups={['Deployment_ID']}
-        loading={loading}
-        />
+            <Table
+                id="DepCfgTable"
+                actionGroup={tableActions}
+                tableTitle={t('Deployment Config')}
+                columnDefinitions={columnDefinitions}
+                items={joblist}
+                disableRowSelect="true"
+                disableGroupBy={false}
+                defaultGroups={['DefaultRuntimeContextDeviceName']}
+                loading={loading}
+            />
         </>
     )
 }
 
-export default connect(mapStateToProps,MapDispatchTpProps)(withTranslation()(DeploymentCfgTable));
+export default connect(mapStateToProps, MapDispatchTpProps)(withTranslation()(DeploymentCfgTable));
 
 

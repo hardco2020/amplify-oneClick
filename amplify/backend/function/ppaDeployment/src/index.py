@@ -155,17 +155,35 @@ def post(event, account_id):
 def get(event):
     print(event)
     eprint(">>> Start query config.")
-    db = boto3.resource("dynamodb")
-    table = db.Table(TABLE_NAME)
+    # db = boto3.resource("dynamodb")
+    # table = db.Table(TABLE_NAME)
+    panorama_client = boto3.client("panorama")
 
     try:
-        response = table.scan()
-        eprint(response)
+        response = panorama_client.list_application_instances()
         eprint(response["ResponseMetadata"]["HTTPStatusCode"])
-        eprint(response["Items"])
+
+        applications = []
+        for node in response["ApplicationInstances"]:
+            application = {}
+            application["Name"] = node["Name"]
+            application["ApplicationInstanceId"] = node["ApplicationInstanceId"]
+            application["DefaultRuntimeContextDeviceName"] = node[
+                "DefaultRuntimeContextDeviceName"
+            ]
+            application["CreatedTime"] = node["CreatedTime"].strftime(
+                "%Y/%m/%d, %H:%M:%S"
+            )
+            application["Arn"] = node["Arn"]
+            application["HealthStatus"] = node["HealthStatus"]
+            application["Status"] = node["Status"]
+
+            applications.append(application)
+            eprint(node)
+        eprint(response["ResponseMetadata"]["HTTPStatusCode"])
         return {
             "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
-            "body": json.dumps(response["Items"]),
+            "body": json.dumps(applications),
             "headers": {
                 "Access-Control-Allow-Headers": "*",
                 "Access-Control-Allow-Origin": "*",
