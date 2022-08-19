@@ -217,14 +217,17 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     }
     const delete_application = async () => {
         const payload = {
-            "ApplicationInstanceId": current.ApplicationInstanceId
+            "ApplicationInstanceId": current[0].ApplicationInstanceId
         }
         const response = await API.del('backend', '/deployment', { body: payload })
 
         setVisible(true)
         setResponseMessage(response)
     }
-
+    const closeModel = () => {
+        this.setState({ visible: false })
+        this.props.history.push("/DeployConfig")
+    }
 
     const tableActions = (
         <Inline>
@@ -238,7 +241,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     );
     return (
         <>
-            <Modal title="Deployment" visible={visible} onClose={() => setVisible(false)}>
+            <Modal title="Deployment" visible={visible} onClose={() => closeModel()}>
                 {responseMessage}
             </Modal>
             <Table
