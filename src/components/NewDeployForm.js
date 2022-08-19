@@ -203,6 +203,7 @@ class NewDeployForm extends React.Component {
   }
 
   handleCameraSelectedChange(e) {
+    console.log(e);
     const selected = this.state.All_Cameras_Options.find((o) => o.value === e.target.value);
     const name = this.state.Cameras.find((o) => o.NodeId === e.target.value).Name;
     this.setState({ Chose_Camera_Name: name });
@@ -243,7 +244,7 @@ class NewDeployForm extends React.Component {
             </FormField>
 
             <FormField label="Device Name" controlId="formFieldId1">
-              <Multiselect
+              <Select
                 options={this.state.All_Devices_Options}
                 onChange={(e) => this.handleDeviceSelectedChange(e)}
                 selectedOption={this.state.Chose_Device}
@@ -256,7 +257,7 @@ class NewDeployForm extends React.Component {
             </FormField>
 
             <FormField label="Camera Name" controlId="formFieldId2">
-              <Select
+              <Multiselect
                 options={this.state.All_Cameras_Options}
                 onChange={(e) => this.handleCameraSelectedChange(e)}
                 selectedOption={this.state.Chose_Camera}

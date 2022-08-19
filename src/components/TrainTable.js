@@ -39,7 +39,7 @@ const columnDefinitions = [
     {
         'id': 'model.model_name',
         width: 250,
-        Header: 'ModelName',
+        Header: 'Application Name',
         accessor: 'model_name',
         Cell: ({ row }) => {
             return <div>
@@ -72,11 +72,11 @@ const columnDefinitions = [
                             // const model_id = row.original.model_name;
                             // const target = "/TrainingResult/"+model_id;
                             return <div>
-                                <StatusIndicator statusType={"positive"} >Test</StatusIndicator>
+                                <StatusIndicator statusType={"positive"} >{status}</StatusIndicator>
                             </div>
                         } else {
                             return <div>
-                                <StatusIndicator statusType="positive" >Complete</StatusIndicator>
+                                <StatusIndicator statusType="positive" >{status}</StatusIndicator>
                             </div>;
                         }
                     default:
@@ -175,7 +175,7 @@ const columnDefinitions = [
     {
         'id': 'trainingjob.model_data_url',
         width: 400,
-        Header: 'ModelStorage',
+        Header: 'Application Storage',
         accessor: 'model_data_url'
     },
     // {
