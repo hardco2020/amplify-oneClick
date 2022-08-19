@@ -11,7 +11,6 @@ import axios from 'axios'
 import { API } from 'aws-amplify';
 
 import { withTranslation } from 'react-i18next'
-import { responseInterceptor } from 'http-proxy-middleware';
 const mapStateToProps = state => {
     return { session: state.session }
 }
