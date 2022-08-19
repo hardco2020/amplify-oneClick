@@ -130,6 +130,11 @@ class CameraCfgTable extends React.Component {
         this.setState({ responseMessage: response })
     }
 
+    closeModel() {
+        this.setState({ visible: false })
+        this.props.history.push("/DeviceConfig")
+    }
+
 
     render() {
         const {

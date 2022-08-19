@@ -6,7 +6,7 @@ import Table from 'aws-northstar/components/Table';
 import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
-
+import Modal from 'aws-northstar/components/Modal'
 
 import React from 'react';
 import { connect } from 'react-redux'
@@ -104,7 +104,9 @@ class DeviceCfgTable extends React.Component {
     this.state = {
       loading: true,
       job_list: [],
-      current: {}
+      current: {},
+      visible: false,
+      responseMessage: ""
     }
   }
 
@@ -146,6 +148,21 @@ class DeviceCfgTable extends React.Component {
     this.props.history.push("/NewDeviceConfig")
   }
 
+  async delete_camera() {
+    const payload = {
+      "DeviceId": this.state.current[0].DeviceId
+    }
+    const response = await API.del('backend', '/device', { body: payload })
+
+    this.setState({ visible: true })
+    this.setState({ responseMessage: response })
+
+  }
+
+  closeModel() {
+    this.setState({ visible: false })
+    this.props.history.push("/DeviceConfig")
+  }
 
 
   render() {
@@ -155,27 +172,31 @@ class DeviceCfgTable extends React.Component {
 
     const tableActions = (
       <Inline>
-        <Button onClick={() => this.jump_to_newCfg()} disabled={this.state.current.length === 0 ? true : false}>
+        <Button onClick={() => this.delete_camera()} disabled={this.state.current.length === 0 ? true : false}>
           {t('Delete Device')}
         </Button>
       </Inline>
     );
 
     return (
-
-      <Table
-        id="DeviceCfgTable"
-        actionGroup={tableActions}
-        tableTitle={t('Device Config')}
-        multiSelect={false}
-        columnDefinitions={columnDefinitions}
-        items={this.state.job_list}
-        onSelectionChange={(item) => { this.setState({ current: item }) }}
-        // getRowId={this.getRowId}
-        loading={this.state.loading}
-        disableSettings={false}
-      // onFetchData={this.handleFetchData}
-      />
+      <>
+        <Table
+          id="DeviceCfgTable"
+          actionGroup={tableActions}
+          tableTitle={t('Device Config')}
+          multiSelect={false}
+          columnDefinitions={columnDefinitions}
+          items={this.state.job_list}
+          onSelectionChange={(item) => { this.setState({ current: item }) }}
+          // getRowId={this.getRowId}
+          loading={this.state.loading}
+          disableSettings={false}
+        // onFetchData={this.handleFetchData}
+        />
+        <Modal title="Delete Device" visible={this.state.visible} onClose={() => this.closeModel()}>
+          {this.state.responseMessage}
+        </Modal>
+      </>
     )
   }
 }

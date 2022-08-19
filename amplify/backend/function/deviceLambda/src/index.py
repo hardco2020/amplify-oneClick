@@ -92,11 +92,42 @@ def get(event):
         return {"statusCode": 500, "body": "Error!!"}
 
 
+def delete(event):
+    print(event)
+    body = json.loads(event["body"])
+    panorama_client = boto3.client("panorama")
+    try:
+        panorama_client.delete_device(DeviceId=body["DeviceId"])
+        return {
+            "statusCode": 200,
+            "body": "Delete Successful !!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
+    except Exception as e:
+        # raise e
+        eprint(e)
+        return {
+            "statusCode": 500,
+            "body": "Error!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
+
+
 def handler(event, context):
     if event["httpMethod"] == "POST":
         return post(event)
     elif event["httpMethod"] == "GET":
         return get(event)
+    elif event["httpMethod"] == "DELETE":
+        return delete(event)
 
 
 if __name__ == "__main__":
