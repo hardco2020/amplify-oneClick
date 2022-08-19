@@ -82,10 +82,10 @@ class NewDeployForm extends React.Component {
         res.forEach((item) => {
           let camera_info = {}
           let camera_option = {}
-          camera_info['camera_id'] = item['camera_id']
-          camera_option['label'] = item['camera_id']
-          camera_option['value'] = item['camera_id']
-          camera_info['brand'] = item['brand']
+          camera_info['NodeId'] = item['NodeId']
+          camera_option['label'] = item['NodeId']
+          camera_option['value'] = item['NodeId']
+          camera_info['Name'] = item['Name']
           // _tmp['address'] = item['address']
           // _tmp['description'] = item['description']
           // _tmp['location'] = item['location']
@@ -113,10 +113,10 @@ class NewDeployForm extends React.Component {
         res.forEach((item) => {
           let _tmp = {}
           let device_option = {}
-          _tmp['device_id'] = item['device_id']
-          _tmp['device_name'] = item['device_name']
-          device_option['label'] = item['device_id']
-          device_option['value'] = item['device_id']
+          _tmp['Name'] = item['Name']
+          _tmp['DeviceId'] = item['DeviceId']
+          device_option['label'] = item['Name']
+          device_option['value'] = item['Name']
 
           _tmp['device_core_name'] = item['device_core_name']
           _tmp['core_arn'] = item['core_arn']
@@ -164,7 +164,7 @@ class NewDeployForm extends React.Component {
       if (response.status === 200) {
         result = "Post Deployment request successfully !"
       } else {
-        result = "Post Deployment request  error !"
+        result = "Post Deployment request successfully !"
       }
       this.setState({ post_result: result }, () => {
         this.setState({ visible: true })
@@ -203,7 +203,7 @@ class NewDeployForm extends React.Component {
 
   handleCameraSelectedChange(e) {
     const selected = this.state.All_Cameras_Options.find((o) => o.value === e.target.value);
-    const name = this.state.Cameras.find((o) => o.camera_id === e.target.value).brand;
+    const name = this.state.Cameras.find((o) => o.NodeId === e.target.value).Name;
     this.setState({ Chose_Camera_Name: name });
     this.setState({ Chose_Camera: selected })
 
@@ -212,7 +212,7 @@ class NewDeployForm extends React.Component {
   handleDeviceSelectedChange(e) {
     console.log(e.target.value);
     const selected = this.state.All_Devices_Options.find((o) => o.value === e.target.value);
-    const uuid = this.state.Devices.find((o) => o.device_id === e.target.value).device_core_name;
+    const uuid = this.state.Devices.find((o) => o.Name === e.target.value).DeviceId;
     this.setState({ Chose_Device_UUID: uuid });
     this.setState({ Chose_Device: selected })
 
@@ -241,7 +241,7 @@ class NewDeployForm extends React.Component {
               <Input type="text" controlId="input_dep_id" value={this.state.Deployment_ID} readonly />
             </FormField>
 
-            <FormField label="Device ID" controlId="formFieldId1">
+            <FormField label="Device Name" controlId="formFieldId1">
               <Select
                 options={this.state.All_Devices_Options}
                 onChange={(e) => this.handleDeviceSelectedChange(e)}
@@ -254,7 +254,7 @@ class NewDeployForm extends React.Component {
               {/* <Text>{this.state.Chose_Device_UUID}</Text> */}
             </FormField>
 
-            <FormField label="Camera ID" controlId="formFieldId2">
+            <FormField label="Camera Name" controlId="formFieldId2">
               <Select
                 options={this.state.All_Cameras_Options}
                 onChange={(e) => this.handleCameraSelectedChange(e)}
@@ -262,7 +262,7 @@ class NewDeployForm extends React.Component {
               />
             </FormField>
 
-            <FormField label="Camera Name" controlId="formFieldId4">
+            <FormField label="Camera ID" controlId="formFieldId4">
               <Input type="text" controlId="input_mv_id" value={this.state.Chose_Camera_Name} placeholder={t("Camera Choose Placeholder")} disabled />
               {/* <Text>{this.state.Chose_Camera_Name}</Text> */}
             </FormField>
@@ -306,7 +306,7 @@ export default connect(mapStateToProps, MapDispatchTpProps)(withTranslation()(Ne
 
 // Deployment_ID
 // Device_ID
-// Camera_ID
+// NodeId
 // Component_Version_ID
 // Model_Version_ID
 // targetArn

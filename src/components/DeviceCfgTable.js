@@ -26,7 +26,7 @@ const columnDefinitions = [
   {
     'id': 'DeviceId',
     width: 300,
-    Header: 'UUID',
+    Header: 'Device ID',
     accessor: 'DeviceId'
   },
   {
@@ -39,7 +39,7 @@ const columnDefinitions = [
     //'AWAITING_PROVISIONING'|'PENDING'|'SUCCEEDED'|'FAILED'|'ERROR'|'DELETING'
     'id': 'ProvisioningStatus',
     width: 200,
-    Header: 'UUID',
+    Header: 'Status',
     accessor: 'ProvisioningStatus',
     Cell: ({ row }) => {
       if (row && row.original) {
@@ -68,7 +68,7 @@ const columnDefinitions = [
   {
     'id': 'CreatedTime',
     width: 300,
-    Header: 'UUID',
+    Header: 'Created Time',
     accessor: 'CreatedTime'
   },
   // {

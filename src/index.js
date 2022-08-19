@@ -18,9 +18,9 @@ Amplify.configure(awsExports);
 
 ReactDOM.render(
   <NorthStarThemeProvider>
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </NorthStarThemeProvider>,
   document.getElementById('root')
 );

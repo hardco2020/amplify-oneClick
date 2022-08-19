@@ -5,6 +5,7 @@ import Table from 'aws-northstar/components/Table';
 import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
+import Modal from 'aws-northstar/components/Modal'
 
 import React from 'react';
 import { connect } from 'react-redux'
