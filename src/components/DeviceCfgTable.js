@@ -3,7 +3,7 @@
 
 import { API } from 'aws-amplify';
 import Table from 'aws-northstar/components/Table';
-// import StatusIndicator from 'aws-northstar/components/StatusIndicator';
+import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
 
