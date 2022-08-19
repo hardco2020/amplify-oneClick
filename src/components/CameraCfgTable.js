@@ -122,7 +122,7 @@ class CameraCfgTable extends React.Component {
     }
 
     async delete_camera() {
-        payloads = {
+        const payloads = {
             "DELETE": true,
             "PackageId": this.state.current['PackageId']
         }
