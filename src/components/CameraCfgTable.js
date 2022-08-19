@@ -76,7 +76,7 @@ class CameraCfgTable extends React.Component {
         this.state = {
             loading: true,
             job_list: [],
-            curent: {},
+            current: {},
             apiMessage: "",
             visible: false
         }
@@ -153,7 +153,7 @@ class CameraCfgTable extends React.Component {
                     multiSelect={false}
                     columnDefinitions={columnDefinitions}
                     items={this.state.job_list}
-                    onSelectionChange={(item) => { this.setState({ curent: item }) }}
+                    onSelectionChange={(item) => { this.setState({ current: item }) }}
                     // getRowId={this.getRowId}
                     disableRowSelect={true}
                     loading={this.state.loading}

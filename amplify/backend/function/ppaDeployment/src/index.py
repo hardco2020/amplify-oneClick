@@ -160,7 +160,7 @@ def get(event):
     panorama_client = boto3.client("panorama")
 
     try:
-        response = panorama_client.list_application_instances()
+        response = panorama_client.list_application_instances(MaxResults=25)
         eprint(response["ResponseMetadata"]["HTTPStatusCode"])
 
         applications = []
