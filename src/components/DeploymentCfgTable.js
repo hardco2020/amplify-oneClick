@@ -91,7 +91,7 @@ const columnDefinitions = [
     // },
     {
         'id': 'Arn',
-        width: 300,
+        width: 500,
         Header: 'Arn',
         accessor: 'Arn'
     },
@@ -103,7 +103,7 @@ const columnDefinitions = [
     // },
     {
         'id': 'CreatedTime',
-        width: 300,
+        width: 200,
         Header: 'Created Time',
         accessor: 'CreatedTime'
     },
@@ -146,6 +146,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
                         _tmp['ApplicationInstanceId'] = item['ApplicationInstanceId']
                         _tmp['DefaultRuntimeContextDeviceName'] = item['DefaultRuntimeContextDeviceName']
                         _tmp['HealthStatus'] = item['HealthStatus']
+                        _tmp['Name'] = item['Name']
                         _tmp['Status'] = item['Status']
                         _tmp['Arn'] = item['Arn']
                         _tmp['targetArn'] = item['targetArn']

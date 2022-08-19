@@ -10,144 +10,144 @@ import Modal from 'aws-northstar/components/Modal';
 import axios from 'axios';
 import { API } from 'aws-amplify';
 
-import React  from 'react';
-import { connect } from 'react-redux' 
+import React from 'react';
+import { connect } from 'react-redux'
 import Textarea from 'aws-northstar/components/Textarea';
 
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 // import mockData from '../mock/mockData'
 
-import {withTranslation} from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { LoadingIndicator } from 'aws-northstar';
 
 const mapStateToProps = state => {
-  return { session: state.session ,language: state.lang.language, languageList: state.lang.languageList}
+  return { session: state.session, language: state.lang.language, languageList: state.lang.languageList }
 }
 
 const MapDispatchTpProps = (dispatch) => {
   return {
-      changeLang: (key)=>dispatch({type: 'change_language',data: key})
+    changeLang: (key) => dispatch({ type: 'change_language', data: key })
   }
 }
 
 
-class  NewDeployForm extends React.Component {
+class NewDeployForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading:true,
+      loading: true,
 
       //Camera Data
-      Cameras:[], // All the camera data
-      All_Cameras_Options:[], // label camera data 
-      Chose_Camera:{}, // choose camera data
+      Cameras: [], // All the camera data
+      All_Cameras_Options: [], // label camera data 
+      Chose_Camera: {}, // choose camera data
       Chose_Camera_Name: "", // choose camera name
 
       //Device Data
-      Devices:[],
-      All_Devices_Options:[],
-      Chose_Device:{},
-      Chose_Device_UUID:"device-ylaq25peslngbrowu2bmlqxp24",
+      Devices: [],
+      All_Devices_Options: [],
+      Chose_Device: {},
+      Chose_Device_UUID: "device-ylaq25peslngbrowu2bmlqxp24",
 
-      Deployment_ID:uuidv4(),
-      Device_ID:'111',
-      Component_Version_ID:'333',
-      targetArn:'s3://app-graph-4c1bb430-172b-11ed-b380-0647bab7fb5a/graph/ppa-2022-08-08-16-00-25/graph.json',
-      deploymentName:'Cam_1 Deployment',
-      components:JSON.stringify({"componentVersion": "1.0.0", "configurationUpdate": {"reset": [ "/network/useHttps", "/tags" ], "merge": {"tags":["/boiler/1/temperature","/boiler/1/pressure","/boiler/2/temperature","/boiler/2/pressure"]}}}),
-      deploymentPolicies:JSON.stringify({"componentUpdatePolicy": {"action": "NOTIFY_COMPONENTS", "timeoutInSeconds": 30 }, "configurationValidationPolicy": {"timeoutInSeconds": 60 }, "failureHandlingPolicy": "ROLLBACK" }),
-      iotJobConfigurations:JSON.stringify({"abortConfig": {"criteriaList": [ {"action": "CANCEL", "failureType": "ALL", "minNumberOfExecutedThings": 100, "thresholdPercentage": 5 } ] }, "jobExecutionsRolloutConfig": {"exponentialRate": {"baseRatePerMinute": 5, "incrementFactor": 2, "rateIncreaseCriteria": {"numberOfNotifiedThings": 10, "numberOfSucceededThings": 5 } }, "maximumPerMinute": 50 }, "timeoutConfig": {"inProgressTimeoutInMinutes": 5 } }),
-      visible:false,
-      post_result:'',
+      Deployment_ID: uuidv4(),
+      Device_ID: '111',
+      Component_Version_ID: '333',
+      targetArn: 's3://app-graph-4c1bb430-172b-11ed-b380-0647bab7fb5a/graph/ppa-2022-08-08-16-00-25/graph.json',
+      deploymentName: 'Cam_1 Deployment',
+      components: JSON.stringify({ "componentVersion": "1.0.0", "configurationUpdate": { "reset": ["/network/useHttps", "/tags"], "merge": { "tags": ["/boiler/1/temperature", "/boiler/1/pressure", "/boiler/2/temperature", "/boiler/2/pressure"] } } }),
+      deploymentPolicies: JSON.stringify({ "componentUpdatePolicy": { "action": "NOTIFY_COMPONENTS", "timeoutInSeconds": 30 }, "configurationValidationPolicy": { "timeoutInSeconds": 60 }, "failureHandlingPolicy": "ROLLBACK" }),
+      iotJobConfigurations: JSON.stringify({ "abortConfig": { "criteriaList": [{ "action": "CANCEL", "failureType": "ALL", "minNumberOfExecutedThings": 100, "thresholdPercentage": 5 }] }, "jobExecutionsRolloutConfig": { "exponentialRate": { "baseRatePerMinute": 5, "incrementFactor": 2, "rateIncreaseCriteria": { "numberOfNotifiedThings": 10, "numberOfSucceededThings": 5 } }, "maximumPerMinute": 50 }, "timeoutConfig": { "inProgressTimeoutInMinutes": 5 } }),
+      visible: false,
+      post_result: '',
     }
   }
 
 
-  componentDidMount(){
+  componentDidMount() {
     this.load_data();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
 
   }
 
-  async load_data(){
-    await API.get('backend','/camera').then(res => {
+  async load_data() {
+    await API.get('backend', '/camera').then(res => {
+      console.log(res)
+      if (res) {
         console.log(res)
-        if (res){
-            console.log(res)
-            var _tmp_data = []
-            let option_data = []
-            res.forEach((item)=>{
-                let camera_info = {}
-                let camera_option = {}
-                camera_info['camera_id'] = item['camera_id']
-                camera_option['label'] = item['camera_id']
-                camera_option['value'] = item['camera_id']
-                camera_info['brand'] = item['brand']
-                // _tmp['address'] = item['address']
-                // _tmp['description'] = item['description']
-                // _tmp['location'] = item['location']
-                // _tmp['network'] = item['network']
-                // _tmp['image_size'] = item['image_size'] 
-                _tmp_data.push(camera_info)
-                option_data.push(camera_option)
+        var _tmp_data = []
+        let option_data = []
+        res.forEach((item) => {
+          let camera_info = {}
+          let camera_option = {}
+          camera_info['camera_id'] = item['camera_id']
+          camera_option['label'] = item['camera_id']
+          camera_option['value'] = item['camera_id']
+          camera_info['brand'] = item['brand']
+          // _tmp['address'] = item['address']
+          // _tmp['description'] = item['description']
+          // _tmp['location'] = item['location']
+          // _tmp['network'] = item['network']
+          // _tmp['image_size'] = item['image_size'] 
+          _tmp_data.push(camera_info)
+          option_data.push(camera_option)
 
-            });
-            this.setState({All_Cameras_Options: option_data});
-            this.setState({Cameras: _tmp_data},()=>{
-                this.setState({loading:false})
-            })
-        }
-        // console.log(this.state.model_list)
-        return res
+        });
+        this.setState({ All_Cameras_Options: option_data });
+        this.setState({ Cameras: _tmp_data }, () => {
+          this.setState({ loading: false })
+        })
+      }
+      // console.log(this.state.model_list)
+      return res
     })
-    await API.get('backend','/device').then(res => {
+    await API.get('backend', '/device').then(res => {
       // await axios.get('/test_cors', {dataType: 'json'}).then(res => {
-          console.log(res)
-          if (res){
-              console.log(res)
-              let _tmp_data = []
-              let option_data = []
-              res.forEach((item)=>{
-                  let _tmp = {}
-                  let device_option = {}
-                  _tmp['device_id'] = item['device_id']
-                  _tmp['device_name'] = item['device_name']
-                  device_option['label'] = item['device_id']
-                  device_option['value'] = item['device_id']
+      console.log(res)
+      if (res) {
+        console.log(res)
+        let _tmp_data = []
+        let option_data = []
+        res.forEach((item) => {
+          let _tmp = {}
+          let device_option = {}
+          _tmp['device_id'] = item['device_id']
+          _tmp['device_name'] = item['device_name']
+          device_option['label'] = item['device_id']
+          device_option['value'] = item['device_id']
 
-                  _tmp['device_core_name'] = item['device_core_name']
-                  _tmp['core_arn'] = item['core_arn']
-                  _tmp['type'] = item['type']
-                  _tmp['use_gpu'] = item['use_gpu']
-                  _tmp['storage'] = item['storage']    
+          _tmp['device_core_name'] = item['device_core_name']
+          _tmp['core_arn'] = item['core_arn']
+          _tmp['type'] = item['type']
+          _tmp['use_gpu'] = item['use_gpu']
+          _tmp['storage'] = item['storage']
 
-                  
-                  _tmp_data.push(_tmp)
-                  option_data.push(device_option)
-              });
-              this.setState({All_Devices_Options:option_data});
-              this.setState({Devices:_tmp_data},()=>{
-                  this.setState({loading:false})
-              })
-          }
-          // console.log(this.state.model_list)
-          return res
-      })
+
+          _tmp_data.push(_tmp)
+          option_data.push(device_option)
+        });
+        this.setState({ All_Devices_Options: option_data });
+        this.setState({ Devices: _tmp_data }, () => {
+          this.setState({ loading: false })
+        })
+      }
+      // console.log(this.state.model_list)
+      return res
+    })
   }
 
-  submit(){
+  submit() {
     // console.log(e)
     const payload = {
-      "Deployment_ID":this.state.Deployment_ID,
+      "Deployment_ID": this.state.Deployment_ID,
       "Device_ID": this.state.Chose_Device_UUID,
       "Camera_ID": this.state.Chose_Camera.value,
       "Component_Version_ID": this.state.Chose_Device_UUID,
       "Model_Version_ID": this.state.Chose_Camera_Name,
       "targetArn": this.state.targetArn,
-      "deploymentName":  this.state.deploymentName,
+      "deploymentName": this.state.deploymentName,
       "components": this.state.components,
       "deploymentPolicies": this.state.deploymentPolicies,
       "iotJobConfigurations": this.state.iotJobConfigurations,
@@ -159,17 +159,17 @@ class  NewDeployForm extends React.Component {
     let result = "";
 
     console.log(payload);
-    API.post('backend','/deployment',{body : payload}).then(response => {
-        console.log(response);
-        if (response.status === 200) {
-            result = "Post Deployment request successfully !"
-        } else {
-            result = "Post Deployment request  error !"
-        }
-        this.setState({post_result:result},()=>{
-          this.setState({visible:true})
-        })
-        // console.log(result)
+    API.post('backend', '/deployment', { body: payload }).then(response => {
+      console.log(response);
+      if (response.status === 200) {
+        result = "Post Deployment request successfully !"
+      } else {
+        result = "Post Deployment request  error !"
+      }
+      this.setState({ post_result: result }, () => {
+        this.setState({ visible: true })
+      })
+      // console.log(result)
     })
     // axios({ method: 'POST', url: `${apiUrl}`, data: payload ,headers: HEADERS}).then(response => {
     //     console.log(response);
@@ -188,112 +188,112 @@ class  NewDeployForm extends React.Component {
     // this.props.history.push("/")
   }
 
-  closeModel(){
-    this.setState({visible:false})
+  closeModel() {
+    this.setState({ visible: false })
     this.props.history.push("/DeployConfig")
   }
 
-  handelInputChange(e,key){
-    this.setState({[key]:e})
+  handelInputChange(e, key) {
+    this.setState({ [key]: e })
   }
 
-  handleTextChange(e,key){
-    this.setState({[key]:e.target.value})
+  handleTextChange(e, key) {
+    this.setState({ [key]: e.target.value })
   }
 
-  handleCameraSelectedChange(e){
-    const selected = this.state.All_Cameras_Options.find((o)=>o.value === e.target.value);
-    const name = this.state.Cameras.find((o)=>o.camera_id === e.target.value).brand;
-    this.setState({Chose_Camera_Name: name});
-    this.setState({Chose_Camera: selected})
+  handleCameraSelectedChange(e) {
+    const selected = this.state.All_Cameras_Options.find((o) => o.value === e.target.value);
+    const name = this.state.Cameras.find((o) => o.camera_id === e.target.value).brand;
+    this.setState({ Chose_Camera_Name: name });
+    this.setState({ Chose_Camera: selected })
 
   }
 
-  handleDeviceSelectedChange(e){
+  handleDeviceSelectedChange(e) {
     console.log(e.target.value);
-    const selected = this.state.All_Devices_Options.find((o)=>o.value === e.target.value);
-    const uuid = this.state.Devices.find((o)=>o.device_id === e.target.value).device_core_name;
-    this.setState({Chose_Device_UUID: uuid});
-    this.setState({Chose_Device: selected})
+    const selected = this.state.All_Devices_Options.find((o) => o.value === e.target.value);
+    const uuid = this.state.Devices.find((o) => o.device_id === e.target.value).device_core_name;
+    this.setState({ Chose_Device_UUID: uuid });
+    this.setState({ Chose_Device: selected })
 
   }
 
 
-  render(){
+  render() {
     const {
-      props: {t}
+      props: { t }
     } = this;
 
-    return(
-      
+    return (
+
       <div>
-        {this.state.loading === true ? <LoadingIndicator size="big"/> : <><Form
-            actions={
-                <div>
-                    {/* <Button variant="link">Cancel</Button> */}
-                    <Button variant="primary" onClick={() => this.submit()}  >Submit</Button>
-                </div>
-            }
-            onSubmit={(e)=>this.handleDeploy(e)}
+        {this.state.loading === true ? <LoadingIndicator size="big" /> : <><Form
+          actions={
+            <div>
+              {/* <Button variant="link">Cancel</Button> */}
+              <Button variant="primary" onClick={() => this.submit()}  >Submit</Button>
+            </div>
+          }
+          onSubmit={(e) => this.handleDeploy(e)}
         >
-            <FormSection header={t("New Deployment")}>
-                 <FormField label="Deployment ID" controlId="formFieldId0">
-                    <Input type="text" controlId="input_dep_id" value={this.state.Deployment_ID} readonly />
-                </FormField>
+          <FormSection header={t("New Deployment")}>
+            <FormField label="Deployment ID" controlId="formFieldId0">
+              <Input type="text" controlId="input_dep_id" value={this.state.Deployment_ID} readonly />
+            </FormField>
 
-                <FormField label="Device ID" controlId="formFieldId1">
-                    <Select
-                    options={this.state.All_Devices_Options}
-                    onChange={(e)=> this.handleDeviceSelectedChange(e)} 
-                    selectedOption={this.state.Chose_Device}
-                />
-                </FormField>
+            <FormField label="Device ID" controlId="formFieldId1">
+              <Select
+                options={this.state.All_Devices_Options}
+                onChange={(e) => this.handleDeviceSelectedChange(e)}
+                selectedOption={this.state.Chose_Device}
+              />
+            </FormField>
 
-                <FormField label="Device UUID" controlId="formFieldId3">
-                    <Input type="text" controlId="input_mv_id" value={this.state.Chose_Device_UUID} placeholder={t("Device Choose Placeholder")} disabled />
-                    {/* <Text>{this.state.Chose_Device_UUID}</Text> */}
-                </FormField>
+            <FormField label="Device UUID" controlId="formFieldId3">
+              <Input type="text" controlId="input_mv_id" value={this.state.Chose_Device_UUID} placeholder={t("Device Choose Placeholder")} disabled />
+              {/* <Text>{this.state.Chose_Device_UUID}</Text> */}
+            </FormField>
 
-                <FormField label="Camera ID" controlId="formFieldId2">
-                <Select
-                    options={this.state.All_Cameras_Options}
-                    onChange={(e)=> this.handleCameraSelectedChange(e)} 
-                    selectedOption={this.state.Chose_Camera}
-                />
-                </FormField>
+            <FormField label="Camera ID" controlId="formFieldId2">
+              <Select
+                options={this.state.All_Cameras_Options}
+                onChange={(e) => this.handleCameraSelectedChange(e)}
+                selectedOption={this.state.Chose_Camera}
+              />
+            </FormField>
 
-                <FormField label="Camera Name" controlId="formFieldId4">
-                    <Input type="text" controlId="input_mv_id" value={this.state.Chose_Camera_Name} placeholder={t("Camera Choose Placeholder")} disabled />
-                    {/* <Text>{this.state.Chose_Camera_Name}</Text> */}
-                </FormField>
+            <FormField label="Camera Name" controlId="formFieldId4">
+              <Input type="text" controlId="input_mv_id" value={this.state.Chose_Camera_Name} placeholder={t("Camera Choose Placeholder")} disabled />
+              {/* <Text>{this.state.Chose_Camera_Name}</Text> */}
+            </FormField>
 
 
-                <FormField label="APP Name" controlId="formFieldId6">
-                    <Input type="text" controlId="input_dn" value={this.state.deploymentName} onChange={(e)=> this.handelInputChange(e,'deploymentName')}  />
-                </FormField>
+            <FormField label="APP Name" controlId="formFieldId6">
+              <Input type="text" controlId="input_dn" value={this.state.deploymentName} onChange={(e) => this.handelInputChange(e, 'deploymentName')} />
+            </FormField>
 
-                <FormField label="Graph.json Target S3 Position" controlId="formFieldId5">
-                    <Input type="text" controlId="input_targetArn" value={this.state.targetArn} onChange={(e)=> this.handelInputChange(e,'targetArn')}  />
-                </FormField>
+            <FormField label="Graph.json Target S3 Position" controlId="formFieldId5">
+              <Input type="text" controlId="input_targetArn" value={this.state.targetArn} onChange={(e) => this.handelInputChange(e, 'targetArn')} />
+            </FormField>
 
-                {/* <FormField label="Components" controlId="formFieldId7">
+            {/* <FormField label="Components" controlId="formFieldId7">
                   <Textarea classname="LabelText" rows="10"  readonly={false} value={this.state.components} onChange={(e)=>this.handleTextChange(e,'components')}> </Textarea> 
                 </FormField> */}
 
-                {/* <FormField label="Deployment Policies" controlId="formFieldId7">
+            {/* <FormField label="Deployment Policies" controlId="formFieldId7">
                   <Textarea classname="LabelText" rows="10"  readonly={false} value={this.state.deploymentPolicies} onChange={(e)=>this.handleTextChange(e,'deploymentPolicies')}> </Textarea> 
                 </FormField> */}
 
-                {/* <FormField label="IoT Job Configurations" controlId="formFieldId7">
+            {/* <FormField label="IoT Job Configurations" controlId="formFieldId7">
                   <Textarea classname="LabelText" rows="10"  readonly={false} value={this.state.iotJobConfigurations} onChange={(e)=>this.handleTextChange(e,'iotJobConfigurations')}> </Textarea> 
                 </FormField> */}
 
-            </FormSection>
+          </FormSection>
         </Form>
-        <Modal title="Deploy" visible={this.state.visible} onClose={() => this.closeModel()}>
+          <Modal title="Deploy" visible={this.state.visible} onClose={() => this.closeModel()}>
             {/* {this.state.post_result} */}
             Successfully Deploy the application!!!
-        </Modal></> }
+          </Modal></>}
 
       </div>
     )
@@ -301,7 +301,7 @@ class  NewDeployForm extends React.Component {
 }
 
 
-export default connect(mapStateToProps,MapDispatchTpProps)(withTranslation()(NewDeployForm));
+export default connect(mapStateToProps, MapDispatchTpProps)(withTranslation()(NewDeployForm));
 
 
 // Deployment_ID

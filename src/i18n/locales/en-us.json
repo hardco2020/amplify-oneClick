@@ -6,7 +6,7 @@
     "Box Detect B": "Box Detect B",
     "Model Training": "Model Training",
     "New Training": "New Training",
-    "Training Result": "Your Application",
+    "Training Result": "Packaged Application",
     "Inference on Cloud": "Inference on Cloud",
     "New Inference": "New Inference",
     "Manual Verify": "Manual Verify",
@@ -18,72 +18,51 @@
     "Dashboard": "Dashboard",
     "Model Dashboard": "Model Dashboard",
     "Alert Dashboard": "Alert Dashboard",
-
     "Config": "Config",
-    "Deployment Config": "Deployment Config",
+    "Deployment Config": "Deployed Application",
     "Component Config": "Component Config",
     "Model Config": "Model Config",
     "Device Config": "Device Config",
     "Camera Config": "Camera Config",
-
     "New Deployment": "New Deployment",
-    "Device Choose Placeholder":"Please choose a device",
-    "Camera Choose Placeholder":"Please choose a camera",
+    "Device Choose Placeholder": "Please choose a device",
+    "Camera Choose Placeholder": "Please choose a camera",
     "New Component Config": "New Component Config",
     "Component Version Config": "Component Version Config",
     "New Component Version Config": "New Component Version Config",
     "New Model Config": "New Model Config",
     "Model Version Config": "Model Version Config",
     "New Model Version Config": "New Model Version Config",
-    "Clone Model":"Clone Model",
-
+    "Clone Model": "Clone Model",
     "New Device Config": "New Device Config",
     "New Camera Config": "New Camera Config",
-
-
     "QRCode": "QRCode",
-
     "mask": "mask",
     "helmet": "helmet",
     "person": "cordon Line",
     "Prev": "Prev",
     "Next": "Next",
-
-
-
     "Home": "Home",
     "Export": "Export",
-
-
     "welcome": "Welcome To Home -en",
-
-
     "Create new Training Job": "Create new Training Job",
     "Model Training Table": "Model Training Table",
     "Model Result": "Model Result",
     "Train Output Detail": "Train Output Detail",
     "Deploy": "Deploy",
-
-
     "Job_id:": "Job_id:",
     "Status:": "Status:",
     "Tag:": "Tag:",
-
     "Event Table": "Event Table",
     "Export Verified Event Dataset": "Export Verified Event Dataset",
-
     "Alert Pic": "Alert Picture",
     "Original Pic": "Original Picture",
-
     "Monitoring": "Monitoring",
     "Camera Monitoring": "Camera Monitoring",
-
     "Monitoring Cameras": "Monitoring Cameras",
     "Live Video": "Live Video",
     "Camera Events": "Camera Events",
     "Start Monitoring": "Start",
     "Stop Monitoring": "Stop",
     "refresh": "refresh"
-
-
 }
