@@ -75,7 +75,9 @@ class CameraCfgTable extends React.Component {
         this.state = {
             loading: true,
             job_list: [],
-            curent: {}
+            curent: {},
+            apiMessage: "",
+            visible: false
         }
     }
 
@@ -117,6 +119,11 @@ class CameraCfgTable extends React.Component {
         this.props.history.push("/NewCameraConfig")
     }
 
+    async delete_camera() {
+        await API.del('backend', '/camera').then(res => {
+            console.log(res);
+        })
+    }
 
 
     render() {
@@ -127,6 +134,9 @@ class CameraCfgTable extends React.Component {
 
         const tableActions = (
             <Inline>
+                <Button variant="primary" onClick={() => this.delete_camera()} disabled={this.state.current.length !== 0 ? false : true}>
+                    {t('Delete Camera')}
+                </Button>
                 <Button variant="primary" onClick={() => this.jump_to_newCfg()}>
                     {t('New Camera Config')}
                 </Button>
@@ -134,21 +144,26 @@ class CameraCfgTable extends React.Component {
         );
 
         return (
-
-            <Table
-                id="CameraCfgTable"
-                actionGroup={tableActions}
-                tableTitle={t('Camera Config')}
-                multiSelect={false}
-                columnDefinitions={columnDefinitions}
-                items={this.state.job_list}
-                // onSelectionChange={(item) => { this.setState({ curent: item }) }}
-                // getRowId={this.getRowId}
-                disableRowSelect={true}
-                loading={this.state.loading}
-                disableSettings={false}
-            // onFetchData={this.handleFetchData}
-            />
+            <>
+                <Table
+                    id="CameraCfgTable"
+                    actionGroup={tableActions}
+                    tableTitle={t('Camera Config')}
+                    multiSelect={false}
+                    columnDefinitions={columnDefinitions}
+                    items={this.state.job_list}
+                    onSelectionChange={(item) => { this.setState({ curent: item }) }}
+                    // getRowId={this.getRowId}
+                    disableRowSelect={true}
+                    loading={this.state.loading}
+                    disableSettings={false}
+                // onFetchData={this.handleFetchData}
+                />
+                <Modal title="Delete Camera" visible={this.state.visible} onClose={() => this.closeModel()}>
+                    {/* {this.state.post_result} */}
+                    { }
+                </Modal>
+            </>
         )
     }
 }

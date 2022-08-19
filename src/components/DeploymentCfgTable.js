@@ -220,7 +220,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
 
     const tableActions = (
         <Inline>
-            <Button variant="primary" onClick={() => delete_application()} disabled={current.length === 0 && current.HealthStatus == 'RUNNING' ? true : false}>
+            <Button variant="primary" onClick={() => delete_application()} disabled={current.length > 0 && current.HealthStatus == 'RUNNING' ? false : true}>
                 {t('Remove Application')}
             </Button>
             <Button variant="primary" onClick={() => jump_to_newCfg()}>
@@ -235,6 +235,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
                 actionGroup={tableActions}
                 tableTitle={t('Deployment Config')}
                 columnDefinitions={columnDefinitions}
+                multiSelect={false}
                 items={joblist}
                 onSelectionChange={(item) => { setCurrent(item) }}
                 disableGroupBy={false}

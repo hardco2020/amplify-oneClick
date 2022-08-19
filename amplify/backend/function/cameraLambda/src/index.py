@@ -92,13 +92,14 @@ def get(event):
     panorama_client = boto3.client("panorama")
 
     try:
-        response = panorama_client.list_nodes()
+        response = panorama_client.list_nodes(MaxResults=25)
         cameras = []
         for node in response["Nodes"]:
             camera = {}
             camera["NodeId"] = node["NodeId"]
             camera["Name"] = node["Name"]
             camera["CreatedTime"] = node["CreatedTime"].strftime("%Y/%m/%d, %H:%M:%S")
+            camera["PackageId"] = node["PackageId"]
             eprint(node["NodeId"])
             eprint(node["Name"])
             if "Description" in node:
@@ -121,8 +122,40 @@ def get(event):
         return {"statusCode": 500, "body": "Error!!"}
 
 
+def delete(event):
+    print(event)
+
+    eprint(">>> Start query config.")
+    panorama_client = boto3.client("panorama")
+    try:
+        panorama_client.delete_package(ForceDelete=True, PackageId=event["PackageId"])
+        return {
+            "statusCode": 200,
+            "body": "Delete Successful !!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
+    except Exception as e:
+        # raise e
+        eprint(e)
+        return {
+            "statusCode": 500,
+            "body": "Error!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
+
+
 def handler(event, context):
     if event["httpMethod"] == "POST":
         return post(event)
     elif event["httpMethod"] == "GET":
         return get(event)
+    elif event["httpMethod"] == "DELETE":
+        return delete(event)
