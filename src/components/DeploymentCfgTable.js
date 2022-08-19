@@ -11,6 +11,7 @@ import axios from 'axios'
 import { API } from 'aws-amplify';
 
 import { withTranslation } from 'react-i18next'
+import { responseInterceptor } from 'http-proxy-middleware';
 const mapStateToProps = state => {
     return { session: state.session }
 }
@@ -150,6 +151,8 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     const [loading, setLoading] = useState(true);
     const [joblist, setJoblist] = useState([]);
     const [current, setCurrent] = useState({});
+    const [visible, setVisible] = useState(false);
+    const [responseMessage, setResponseMessage] = useState("");
     // const [current, setCurrent] = useState({});
     // console.log(current);
     useEffect(() => {
@@ -218,7 +221,9 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
             "ApplicationInstanceId": current.ApplicationInstanceId
         }
         const response = await API.del('backend', 'deployment', { body: payload })
-        console.log(response)
+
+        setVisible(true)
+        setResponseMessage(response)
     }
 
 
@@ -234,6 +239,9 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     );
     return (
         <>
+            <Modal title="Deployment" visible={visible} onClose={() => setVisible(false)}>
+                {responseMessage}
+            </Modal>
             <Table
                 id="DepCfgTable"
                 actionGroup={tableActions}

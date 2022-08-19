@@ -203,12 +203,46 @@ def get(event):
         }
 
 
+def delete(event):
+    print(event)
+    panorama_client = boto3.client("panorama")
+    body = json.loads(event["body"])
+    try:
+        panorama_client.remove_application_instance(
+            ApplicationInstanceId=body["ApplicationInstanceId"]
+        )
+        return {
+            "statusCode": 200,
+            "body": "Delete Successful !!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
+    except Exception as e:
+        # raise e
+        eprint(e)
+        return {
+            "statusCode": 500,
+            "body": "Error!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
+
+
 def handler(event, context):
+
     if event["httpMethod"] == "POST":
         aws_account_id = context.invoked_function_arn.split(":")[4]
         return post(event, aws_account_id)
     elif event["httpMethod"] == "GET":
         return get(event)
+    elif event["httpMethod"] == "DELETE":
+        return delete(event)
 
 
 if __name__ == "__main__":

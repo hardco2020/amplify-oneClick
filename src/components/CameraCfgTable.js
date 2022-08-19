@@ -2,15 +2,12 @@
 /* eslint-disable react/no-multi-comp */
 // import { Table, Header, SpaceBetween, Button, TextFilter, Pagination } from '@amzn/awsui-components-react/polaris';
 import Table from 'aws-northstar/components/Table';
-import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
 import Modal from 'aws-northstar/components/Modal'
 
 import React from 'react';
 import { connect } from 'react-redux'
-
-import axios from 'axios'
 import Amplify, { API } from 'aws-amplify';
 
 import { withTranslation } from 'react-i18next'
@@ -78,7 +75,8 @@ class CameraCfgTable extends React.Component {
             job_list: [],
             current: {},
             apiMessage: "",
-            visible: false
+            visible: false,
+            responseMessage: ""
         }
     }
 
@@ -126,9 +124,10 @@ class CameraCfgTable extends React.Component {
             "PackageId": this.state.current[0]['PackageId']
         }
         console.log(payload)
-        await API.del('backend', '/camera', { body: payload }).then(res => {
-            console.log(res);
-        })
+        const response = await API.del('backend', '/camera', { body: payload })
+
+        this.setState({ visible: true })
+        this.setState({ responseMessage: response })
     }
 
 
@@ -165,8 +164,7 @@ class CameraCfgTable extends React.Component {
                 // onFetchData={this.handleFetchData}
                 />
                 <Modal title="Delete Camera" visible={this.state.visible} onClose={() => this.closeModel()}>
-                    {/* {this.state.post_result} */}
-                    { }
+                    {this.state.responseMessage}
                 </Modal>
             </>
         )
