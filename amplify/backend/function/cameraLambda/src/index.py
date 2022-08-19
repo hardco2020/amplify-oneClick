@@ -87,21 +87,9 @@ def post(event):
 
 def get(event):
     print(event)
-    TABLE_NAME = "Camera-" + env_p
+
     eprint(">>> Start query config.")
-    # return {
-    #   'statusCode': 200,
-    #   'headers': {
-    #       'Access-Control-Allow-Headers': '*',
-    #       'Access-Control-Allow-Origin': '*',
-    #       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-    #   },
-    #   'body': json.dumps('Hello from your new Amplify Python lambda!')
-    # }
-    result = ""
-    db = boto3.resource("dynamodb")
     panorama_client = boto3.client("panorama")
-    table = db.Table(TABLE_NAME)
 
     try:
         response = panorama_client.list_nodes()
@@ -119,9 +107,6 @@ def get(event):
             eprint(node["CreatedTime"].strftime("%Y/%m/%d, %H:%M:%S"))
             cameras.append(camera)
 
-        # response = table.scan()
-        # eprint(response["ResponseMetadata"]["HTTPStatusCode"])
-        # eprint(response["Items"])
         return {
             "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
             "body": json.dumps(cameras),

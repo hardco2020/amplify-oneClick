@@ -33,13 +33,13 @@ const columnDefinitions = [
     },
     {
         'id': 'Name',
-        width: 600,
+        width: 300,
         Header: 'Camera Name',
         accessor: 'Name'
     },
     {
         'id': 'Description',
-        width: 300,
+        width: 400,
         Header: 'Description',
         accessor: 'Description'
     },
@@ -51,7 +51,7 @@ const columnDefinitions = [
     // },
     {
         'id': 'CreatedTime',
-        width: 200,
+        width: 400,
         Header: 'Name',
         accessor: 'CreatedTime'
     },
@@ -142,8 +142,9 @@ class CameraCfgTable extends React.Component {
                 multiSelect={false}
                 columnDefinitions={columnDefinitions}
                 items={this.state.job_list}
-                onSelectionChange={(item) => { this.setState({ curent: item }) }}
+                // onSelectionChange={(item) => { this.setState({ curent: item }) }}
                 // getRowId={this.getRowId}
+                disableRowSelect={true}
                 loading={this.state.loading}
                 disableSettings={false}
             // onFetchData={this.handleFetchData}
