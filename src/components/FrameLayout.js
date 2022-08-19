@@ -6,7 +6,7 @@ import AppLayout from 'aws-northstar/layouts/AppLayout';
 import SideNavigation from 'aws-northstar/components/SideNavigation';
 import BreadcrumbGroup from 'aws-northstar/components/BreadcrumbGroup';
 import { withTranslation } from 'react-i18next'
-
+import Link from 'aws-northstar/components/Link';
 import Box from 'aws-northstar/layouts/Box';
 import ButtonDropdown from 'aws-northstar/components/ButtonDropdown';
 import Header from 'aws-northstar/components/Header';

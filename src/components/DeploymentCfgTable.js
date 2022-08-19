@@ -68,33 +68,50 @@ const columnDefinitions = [
     //     accessor: 'Camera_ID'
     // },
     // {
-    //     'id': 'Status',
-    //     width: 300,
-    //     Header: 'Status',
-    //     accessor: 'Status',
-    //     Cell: ({ row }) => {
-    //         if (row && row.original) {
-    //             const status = row.original.status;
-    //             switch (status) {
-    //                 case 'RUNNING':
-    //                     return <StatusIndicator statusType='positive'>{status}</StatusIndicator>;
-    //                 case 'ERROR':
-    //                     return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
-    //                 case 'NOT_AVAILABLE':
-    //                     return <StatusIndicator statusType='warning'>{status}</StatusIndicator>;
-    //                 default:
-    //                     return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
-    //             }
-    //         }
-    //         return null;
-    //     }
-    // },
     {
-        'id': 'Arn',
-        width: 500,
-        Header: 'Arn',
-        accessor: 'Arn'
+        'id': 'Status',
+        width: 400,
+        Header: 'Status',
+        accessor: 'Status',
+        Cell: ({ row }) => {
+            if (row && row.original) {
+                const status = row.original.Status;
+                switch (status) {
+                    case 'DEPLOYMENT_PENDING':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'DEPLOYMENT_REQUESTED':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'DEPLOYMENT_IN_PROGRESS':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'DEPLOYMENT_ERROR':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'DEPLOYMENT_SUCCEEDED':
+                        return <StatusIndicator statusType='positive'>{status}</StatusIndicator>;
+                    case 'REMOVAL_PENDING':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'REMOVAL_REQUESTED':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'REMOVAL_IN_PROGRESS':
+                        return <StatusIndicator statusType='info'>{status}</StatusIndicator>;
+                    case 'REMOVAL_FAILED':
+                        return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+                    case 'REMOVAL_SUCCEEDED':
+                        return <StatusIndicator statusType='warning'>{status}</StatusIndicator>;
+                    case 'DEPLOYMENT_FAILED':
+                        return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+                    default:
+                        return <StatusIndicator statusType='negative'>{status}</StatusIndicator>;
+                }
+            }
+            return null;
+        }
     },
+    // {
+    //     'id': 'Arn',
+    //     width: 500,
+    //     Header: 'Arn',
+    //     accessor: 'Arn'
+    // },
     // {
     //     'id': 'targetArn',
     //     width: 300,
@@ -203,8 +220,8 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
 
     const tableActions = (
         <Inline>
-            <Button variant="primary" onClick={() => delete_application()} disabled={current.length === 0 ? true : false}>
-                {t('Delete Device')}
+            <Button variant="primary" onClick={() => delete_application()} disabled={current.length === 0 && current.HealthStatus == 'RUNNING' ? true : false}>
+                {t('Remove Application')}
             </Button>
             <Button variant="primary" onClick={() => jump_to_newCfg()}>
                 {t('New Deployment')}
