@@ -2,7 +2,7 @@ import Table from 'aws-northstar/components/Table';
 import StatusIndicator from 'aws-northstar/components/StatusIndicator';
 import Button from 'aws-northstar/components/Button';
 import Inline from 'aws-northstar/layouts/Inline';
-
+import Modal from 'aws-northstar/components/Modal';
 import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
@@ -220,7 +220,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
         const payload = {
             "ApplicationInstanceId": current.ApplicationInstanceId
         }
-        const response = await API.del('backend', 'deployment', { body: payload })
+        const response = await API.del('backend', '/deployment', { body: payload })
 
         setVisible(true)
         setResponseMessage(response)
@@ -229,7 +229,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
 
     const tableActions = (
         <Inline>
-            <Button variant="primary" onClick={() => delete_application()} disabled={current.length > 0 && current[0].Status.startsWith('DEPLOYMENT') ? false : true}>
+            <Button onClick={() => delete_application()} disabled={current.length > 0 && current[0].Status.startsWith('DEPLOYMENT') ? false : true}>
                 {t('Remove Application')}
             </Button>
             <Button variant="primary" onClick={() => jump_to_newCfg()}>
