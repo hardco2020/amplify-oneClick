@@ -132,7 +132,7 @@ class CameraCfgTable extends React.Component {
 
     closeModel() {
         this.setState({ visible: false })
-        location.reload();
+        window.location.reload();
     }
 
 
