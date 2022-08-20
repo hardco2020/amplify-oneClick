@@ -226,7 +226,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     }
     const closeModel = () => {
         this.setState({ visible: false })
-        location.reload()
+        window.location.reload();
     }
 
     const tableActions = (
