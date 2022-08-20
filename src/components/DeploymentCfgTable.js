@@ -226,7 +226,7 @@ const DeploymentCfgTable = ({ t, changeLang }) => {
     }
     const closeModel = () => {
         this.setState({ visible: false })
-        this.props.history.push("/DeployConfig")
+        location.reload()
     }
 
     const tableActions = (

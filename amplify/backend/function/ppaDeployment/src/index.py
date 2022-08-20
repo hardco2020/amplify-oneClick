@@ -101,6 +101,15 @@ def post(event, account_id):
             RuntimeRoleArn=arn_role,
         )
         eprint(resp)
+        return { 
+            "statusCode": 200,
+            "body": "Panorama Deployment Successful!!",
+            "headers": {
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            },
+        }
     except Exception as e:
         # raise e
         eprint(e)
@@ -114,42 +123,42 @@ def post(event, account_id):
             },
         }
 
-    try:
-        response = table.put_item(
-            Item={
-                "DeploymentID": body["Deployment_ID"],
-                "DeviceID": body["Device_ID"],
-                "CameraID": body["Camera_ID"],
-                "ComponentVersionID": body["Component_Version_ID"],
-                "ModelVersionID": body["Model_Version_ID"],
-                "TargetArn": body["targetArn"],
-                "DeploymentName": body["deploymentName"],
-                "components": body["components"],
-                "deploymentPolicies": body["deploymentPolicies"],
-                "iotJobConfigurations": body["iotJobConfigurations"],
-            }
-        )
-        return {
-            "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
-            "body": body["Deployment_ID"],
-            "headers": {
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-            },
-        }
-    except Exception as e:
-        # raise e
-        eprint(e)
-        return {
-            "statusCode": 500,
-            "body": "Error!!",
-            "headers": {
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-            },
-        }
+    # try:
+    #     response = table.put_item(
+    #         Item={
+    #             "DeploymentID": body["Deployment_ID"],
+    #             "DeviceID": body["Device_ID"],
+    #             "CameraID": body["Camera_ID"],
+    #             "ComponentVersionID": body["Component_Version_ID"],
+    #             "ModelVersionID": body["Model_Version_ID"],
+    #             "TargetArn": body["targetArn"],
+    #             "DeploymentName": body["deploymentName"],
+    #             "components": body["components"],
+    #             "deploymentPolicies": body["deploymentPolicies"],
+    #             "iotJobConfigurations": body["iotJobConfigurations"],
+    #         }
+    #     )
+    #     return {
+    #         "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
+    #         "body": body["Deployment_ID"],
+    #         "headers": {
+    #             "Access-Control-Allow-Headers": "*",
+    #             "Access-Control-Allow-Origin": "*",
+    #             "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+    #         },
+    #     }
+    # except Exception as e:
+    #     # raise e
+    #     eprint(e)
+    #     return {
+    #         "statusCode": 500,
+    #         "body": "Error!!",
+    #         "headers": {
+    #             "Access-Control-Allow-Headers": "*",
+    #             "Access-Control-Allow-Origin": "*",
+    #             "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+    #         },
+    #     }
 
 
 def get(event):

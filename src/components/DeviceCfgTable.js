@@ -161,7 +161,7 @@ class DeviceCfgTable extends React.Component {
 
   closeModel() {
     this.setState({ visible: false })
-    this.props.history.push("/DeviceConfig")
+    location.reload();
   }
 
 

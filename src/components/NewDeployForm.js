@@ -154,6 +154,7 @@ class NewDeployForm extends React.Component {
       "iotJobConfigurations": this.state.iotJobConfigurations,
 
     };
+
     // const HEADERS = {'Content-Type': 'application/json'};
     // const apiUrl = '/deployment';
     // // var result = "=> call"  + apiUrl + "\n";

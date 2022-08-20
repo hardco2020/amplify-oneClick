@@ -132,7 +132,7 @@ class CameraCfgTable extends React.Component {
 
     closeModel() {
         this.setState({ visible: false })
-        this.props.history.push("/CameraConfig")
+        location.reload();
     }
 
 
