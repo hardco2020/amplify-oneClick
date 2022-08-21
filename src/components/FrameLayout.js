@@ -8,6 +8,7 @@ import BreadcrumbGroup from 'aws-northstar/components/BreadcrumbGroup';
 import { withTranslation } from 'react-i18next'
 import Link from 'aws-northstar/components/Link';
 import Box from 'aws-northstar/layouts/Box';
+import Button from 'aws-northstar/components/Button';
 import ButtonDropdown from 'aws-northstar/components/ButtonDropdown';
 import Header from 'aws-northstar/components/Header';
 
