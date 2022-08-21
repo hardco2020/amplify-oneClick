@@ -87,7 +87,7 @@ def post(event):
 
 
 def get(event):
-    eprint("env", os.environ["env"])
+    eprint("env", os.environ["ENV"])
     print(event)
 
     eprint(">>> Start query config.")
