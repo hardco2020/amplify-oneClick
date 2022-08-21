@@ -1,7 +1,7 @@
-from concurrent.futures import process
 import json
 import boto3
 import sys
+import os
 
 
 # SSM
@@ -87,7 +87,7 @@ def post(event):
 
 
 def get(event):
-    eprint("env", process.env.ENV)
+    eprint("env", os.environ["env"])
     print(event)
 
     eprint(">>> Start query config.")
