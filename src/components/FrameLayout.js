@@ -697,6 +697,9 @@ class FrameLayout extends React.Component {
                 ]
         }
     }
+    jump_to_panorama() {
+        window.location.href = "https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#first-run"
+    }
 
     render() {
         const {
@@ -714,7 +717,7 @@ class FrameLayout extends React.Component {
             rightContent={
 
                 <Box alignItems="center" display="flex" >
-                    <Button icon="external"><Link href="https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#first-run">Panorama</Link></Button>
+                    <Button icon="external" onClick={() => this.jump_to_panorama()}>Panorama</Button>
                     <ButtonDropdown content={t('lang')} items={menuItems} darkTheme />
                 </Box>
             }
