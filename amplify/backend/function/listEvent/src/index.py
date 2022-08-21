@@ -1,3 +1,4 @@
+import os
 import boto3
 import json
 from botocore.exceptions import ClientError
@@ -5,7 +6,7 @@ from boto3.dynamodb.conditions import Key
 
 env_p = boto3.client("ssm").get_parameter(Name="/ppe/env")["Parameter"]["Value"]
 # DB
-TABLE_NAME = "Event-" + env_p
+TABLE_NAME = "Event-" + os.environ["ENV"]
 db = boto3.resource("dynamodb")
 table = db.Table(TABLE_NAME)
 

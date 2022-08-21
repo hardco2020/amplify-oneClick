@@ -1,4 +1,5 @@
 import json
+import os
 import boto3
 import sys
 
@@ -16,7 +17,7 @@ arn_role = boto3.client("ssm").get_parameter(Name="/ppe/config/arn")["Parameter"
     "Value"
 ]
 env_p = boto3.client("ssm").get_parameter(Name="/ppe/env")["Parameter"]["Value"]
-TABLE_NAME = "Deployment-" + env_p
+TABLE_NAME = "Deployment-" + os.environ["ENV"]
 
 # Hack to print to stderr so it appears in CloudWatch.
 def eprint(*args, **kwargs):
@@ -101,7 +102,7 @@ def post(event, account_id):
             RuntimeRoleArn=arn_role,
         )
         eprint(resp)
-        return { 
+        return {
             "statusCode": 200,
             "body": "Panorama Deployment Successful!!",
             "headers": {
