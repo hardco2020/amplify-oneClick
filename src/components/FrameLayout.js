@@ -697,8 +697,16 @@ class FrameLayout extends React.Component {
                 ]
         }
     }
-    jump_to_panorama() {
-        window.location.href = "https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#first-run"
+    jump_to_panorama(d) {
+        if (d === 'device') {
+            window.location.href = "https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#devices"
+        }
+        else if (d === 'camera') {
+            window.location.href = "https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#data-sources"
+        }
+        else if (d === 'application') {
+            window.location.href = "https://ap-southeast-1.console.aws.amazon.com/panorama/home?region=ap-southeast-1#deployed-applications"
+        }
     }
 
     render() {
@@ -711,13 +719,18 @@ class FrameLayout extends React.Component {
             { text: '简体中文', onClick: () => this.props.changeLang('zh') },
             { text: '繁體中文', onClick: () => this.props.changeLang('zh_tw') }
         ];
+        const PanoramaItems = [
+            { text: 'Camera', onClick: () => this.jump_to_panorama('camera') },
+            { text: 'Device', onClick: () => this.jump_to_panorama('device') },
+            { text: 'Application', onClick: () => this.jump_to_panorama('application') }
+        ]
 
         const _header = <Header
             title={t("Out of Box AI Demo")}
             rightContent={
 
                 <Box alignItems="center" display="flex" >
-                    <Button icon="external" onClick={() => this.jump_to_panorama()}>Panorama</Button>
+                    <ButtonDropdown content="Panorama" items={PanoramaItems} darkTheme />
                     <ButtonDropdown content={t('lang')} items={menuItems} darkTheme />
                 </Box>
             }
