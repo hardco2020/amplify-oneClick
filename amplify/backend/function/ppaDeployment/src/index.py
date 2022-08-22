@@ -1,6 +1,7 @@
 import json
 import boto3
 import sys
+import os
 
 override_camera_template = {
     "nodeGraphOverrides": {
@@ -12,9 +13,9 @@ override_camera_template = {
 }
 
 
-arn_role = boto3.client("ssm").get_parameter(Name="/ppe/config/arn")["Parameter"][
-    "Value"
-]
+arn_role = boto3.client("ssm").get_parameter(
+    Name="/ppe/config/arn/" + os.environ["ENV"]
+)["Parameter"]["Value"]
 env_p = boto3.client("ssm").get_parameter(Name="/ppe/env")["Parameter"]["Value"]
 TABLE_NAME = "Deployment-" + env_p
 
@@ -101,7 +102,7 @@ def post(event, account_id):
             RuntimeRoleArn=arn_role,
         )
         eprint(resp)
-        return { 
+        return {
             "statusCode": 200,
             "body": "Panorama Deployment Successful!!",
             "headers": {

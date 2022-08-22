@@ -3,19 +3,13 @@ import boto3
 import sys
 
 
-# SSM
-env_p = boto3.client("ssm").get_parameter(Name="/ppe/env")["Parameter"]["Value"]
-
 # Hack to print to stderr so it appears in CloudWatch.
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 
 def post(event):
-    TABLE_NAME = "Camera-" + env_p
-    db = boto3.resource("dynamodb")
     pano_client = boto3.client("panorama")
-    table = db.Table(TABLE_NAME)
     body = json.loads(event["body"])
 
     CAMERA_NAME = body["brand"]
@@ -53,36 +47,6 @@ def post(event):
                 "Access-Control-Allow-Headers": "*",
             },
         }
-
-    try:
-        response = table.put_item(
-            Item={
-                "camera_id": body["camera_id"],
-                "address": body["address"],
-                "description": body["description"],
-                "location": body["location"],
-                "brand": body["brand"],
-                "network": body["network"],
-                "image_size": body["image_size"],
-                "JobId": pano_res["JobId"],
-            }
-        )
-        eprint("OK !!")
-        eprint(response)
-        return {
-            "statusCode": response["ResponseMetadata"]["HTTPStatusCode"],
-            "body": body["camera_id"],
-            "headers": {
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*",
-            },
-        }
-    except Exception as e:
-        # raise e
-        eprint("Error !!")
-        eprint(e)
-        return {"statusCode": 500, "body": json.dumps("error")}
 
 
 def get(event):
