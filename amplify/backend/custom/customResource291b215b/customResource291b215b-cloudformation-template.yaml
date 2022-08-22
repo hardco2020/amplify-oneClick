@@ -10,7 +10,11 @@ Resources:
   EnvParameter:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: /ppe/env
+      Name: 
+        Fn::Join:
+          - "/"
+          - - /ppe/env
+            - Ref: env
       Type: String
       Value:
         Ref: env
@@ -20,7 +24,11 @@ Resources:
   RandomParameter:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: /ppe/random
+      Name: 
+        Fn::Join:
+          - "/"
+          - - /ppe/random
+            - Ref: env
       Type: String
       Value:
         Fn::Select:
@@ -35,6 +43,10 @@ Resources:
     Type: AWS::SSM::Parameter
     Properties:
       Name: /ppe/config/arn
+        Fn::Join:
+          - "/"
+          - - /ppe/config/arn
+            - Ref: env
       Type: String
       Value:
         Fn::GetAtt:
