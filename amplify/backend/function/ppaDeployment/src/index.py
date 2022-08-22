@@ -66,6 +66,14 @@ def post(event, account_id):
             "with"
         ].append({"name": "{}".format(camera)})
 
+    # add environment variable into Graph.json
+    # override_camera_template["nodeGraphOverrides"]["nodes"].append(
+    #     {
+    #         "name": "{}".format(os.environ["ENV"])
+    #         ""
+    #     }
+    # )
+
     # Use targerArn for S3 bucket to download graph.json
     bucket, key = body["targetArn"].split("/", 2)[-1].split("/", 1)
     eprint({bucket, key})
